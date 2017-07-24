@@ -11,6 +11,35 @@
   <name>NeverBounce API Client</name>
   <description>NeverBounce API Client</description>
 
+  <organization>
+    <name>Metrics Delivered LLC.</name>
+    <url>https://neverbounce.com/</url>
+  </organization>
+
+  <licenses>
+    <license>
+      <name>The MIT License</name>
+      <url>https://opensource.org/licenses/MIT</url>
+    </license>
+  </licenses>
+
+  <scm>
+    <url>https://github.com/NeverBounce/NeverBounceApi-Java</url>
+  </scm>
+
+  <developers>
+    <developer>
+      <id>mmollick</id>
+      <name>Michael Mollick</name>
+      <email>mike at neverbounce.​com</email>
+    </developer>
+    <developer>
+      <id>lcsontos</id>
+      <name>Laszlo Csontos</name>
+      <email>github at laszlocsontos.com</email>
+    </developer>
+  </developers>
+
   <modules>
     <module>neverbounce-api-core</module>
     <module>neverbounce-api-examples</module>
