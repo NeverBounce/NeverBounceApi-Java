@@ -1,0 +1,12 @@
+engines:
+  checkstyle:
+    enabled: true
+    config: 'google_checks.xml'
+    channel: "beta"
+  pmd:
+    enabled: true
+    channel: "beta"
+
+ratings:
+  paths:
+  - "**.java"
