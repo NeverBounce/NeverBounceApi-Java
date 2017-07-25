@@ -1,4 +1,4 @@
-package com.neverbounce.api;
+package com.neverbounce.api.client;
 
 /**
  * Entry point to NeverbounceClient's API.
