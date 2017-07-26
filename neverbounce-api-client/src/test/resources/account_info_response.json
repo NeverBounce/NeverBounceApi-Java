@@ -8,5 +8,6 @@
   "jobs_under_review": 0,
   "jobs_queued": 0,
   "jobs_processing": 0,
+  "status": "success",
   "execution_time": 1419
 }
