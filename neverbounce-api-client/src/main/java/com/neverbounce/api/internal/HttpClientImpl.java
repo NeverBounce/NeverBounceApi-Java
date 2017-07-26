@@ -1,5 +1,7 @@
 package com.neverbounce.api.internal;
 
+import static com.neverbounce.api.model.Status.SUCCESS;
+
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestFactory;
@@ -11,6 +13,7 @@ import com.google.api.client.json.JsonParser;
 import com.neverbounce.api.client.exception.NeverbounceApiException;
 import com.neverbounce.api.client.exception.NeverbounceIOException;
 import com.neverbounce.api.model.Response;
+import com.neverbounce.api.model.Status;
 import java.io.IOException;
 
 /**
@@ -23,6 +26,7 @@ public class HttpClientImpl implements HttpClient {
 
   private static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
 
+  private final String apiKey;
   private final HttpRequestFactory requestFactory;
 
   public HttpClientImpl(String apiKey) {
@@ -30,7 +34,17 @@ public class HttpClientImpl implements HttpClient {
   }
 
   HttpClientImpl(String apiKey, HttpTransport httpTransport) {
-    HttpRequestInitializer httpRequestInitializer = new DefaultHttpRequestInitializer(apiKey);
+    this.apiKey = apiKey;
+
+    HttpRequestInitializer httpRequestInitializer = new HttpRequestInitializer() {
+
+      @Override
+      public void initialize(HttpRequest httpRequest) throws IOException {
+        httpRequest.setParser(JSON_FACTORY.createJsonObjectParser());
+      }
+
+    };
+
     requestFactory = httpTransport.createRequestFactory(httpRequestInitializer);
   }
 
@@ -39,13 +53,39 @@ public class HttpClientImpl implements HttpClient {
     GenericUrl url = new GenericUrl(API_BASE_URL + "/" + path);
 
     try {
-      HttpRequest request = requestFactory.buildGetRequest(url);
-      return request.execute().parseAs(responseClass);
+      HttpRequest httpRequest = requestFactory.buildGetRequest(url);
+      prepareRequest(httpRequest);
+
+      R response = httpRequest.execute().parseAs(responseClass);
+      Status status = response.getStatus();
+      if (!SUCCESS.equals(status)) {
+        throw new NeverbounceApiException(response);
+      }
+
+      return response;
     } catch (HttpResponseException hre) {
       throw translateHttpResponseException(hre);
     } catch (IOException ioe) {
       throw new NeverbounceIOException(ioe);
     }
+  }
+
+  private void prepareRequest(HttpRequest httpRequest) {
+    String requestMethod = httpRequest.getRequestMethod();
+    if (HTTP_METHOD_GET.equals(requestMethod)) {
+      GenericUrl url = httpRequest.getUrl();
+      url.set(API_KEY, apiKey);
+      return;
+    }
+
+    if (HTTP_METHOD_POST.equals(requestMethod)) {
+      // TODO: Add api_key as a new form parameter
+      return;
+    }
+
+    throw new UnsupportedOperationException(
+        "Cannot authenticate request for unimplemented HTTP method " + requestMethod
+    );
   }
 
   private RuntimeException translateHttpResponseException(HttpResponseException hre) {

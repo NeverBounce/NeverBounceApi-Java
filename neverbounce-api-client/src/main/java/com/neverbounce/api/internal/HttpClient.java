@@ -13,7 +13,7 @@ import com.neverbounce.api.model.Response;
 public interface HttpClient {
 
   String API_BASE_URL = "https://api.neverbounce.com/v4";
-  String API_KEY = "api_key";
+  String API_KEY = "key";
 
   String HTTP_METHOD_GET = "GET";
   String HTTP_METHOD_POST = "POST";

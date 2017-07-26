@@ -19,6 +19,15 @@ public class NeverbounceApiException extends RuntimeException implements Respons
   @Key
   private String message;
 
+  public NeverbounceApiException() {
+  }
+
+  public NeverbounceApiException(Response response) {
+    executionTime = response.getExecutionTime();
+    status = response.getStatus();
+    message = response.getMessage();
+  }
+
   public long getExecutionTime() {
     return executionTime;
   }

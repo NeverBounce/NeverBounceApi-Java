@@ -10,4 +10,6 @@ public interface Response {
 
   long getExecutionTime();
 
+  String getMessage();
+
 }

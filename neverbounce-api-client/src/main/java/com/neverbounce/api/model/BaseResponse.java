@@ -14,6 +14,10 @@ class BaseResponse implements Response {
   @Key
   private Status status;
 
+  @Key
+  private String message;
+
+  @Override
   public Status getStatus() {
     return status;
   }
@@ -22,12 +26,18 @@ class BaseResponse implements Response {
     this.status = status;
   }
 
+  @Override
   public long getExecutionTime() {
     return executionTime;
   }
 
   public void setExecutionTime(long executionTime) {
     this.executionTime = executionTime;
+  }
+
+  @Override
+  public String getMessage() {
+    return message;
   }
 
 }
