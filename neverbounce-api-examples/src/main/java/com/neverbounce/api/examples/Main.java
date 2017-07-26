@@ -21,6 +21,12 @@ import org.apache.commons.cli.Options;
  */
 public class Main {
 
+  /**
+   * Main method.
+   *
+   * @param args command line arguments
+   * @throws Exception Exception thrown upon errors
+   */
   public static void main(String... args) throws Exception {
     Options options = new Options();
     options.addOption("a", "api-key", true, "API Key");

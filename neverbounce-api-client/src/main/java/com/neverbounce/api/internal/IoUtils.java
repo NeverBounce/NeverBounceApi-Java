@@ -27,11 +27,11 @@ public final class IoUtils {
   }
 
   /**
-   * Loads a resource from the classpath as a {@code String}
+   * Loads a resource from the classpath as a {@code String}.
    *
-   * @param resourceName
+   * @param resourceName Resource name
    * @return resource as a string
-   * @throws IOException
+   * @throws IOException upon I/O errors
    */
   public static String getResourceAsString(String resourceName) throws IOException {
     return toString(getResource(resourceName));
