@@ -24,7 +24,7 @@ public class HttpClientTest {
 
   @Test
   public void testGetForObject_withOK() throws Exception {
-    String content = IOUtils.getResourceAsString("account_info_response.json");
+    String content = IoUtils.getResourceAsString("account_info_response.json");
     HttpClient httpClient = createHttpClient(200, MEDIA_TYPE, content);
 
     AccountInfoResponse accountInfoResponse =
@@ -36,7 +36,7 @@ public class HttpClientTest {
 
   @Test
   public void testGetForObject_withBadRequest() throws Exception {
-    String content = IOUtils.getResourceAsString("error_response.json");
+    String content = IoUtils.getResourceAsString("error_response.json");
     HttpClient httpClient = createHttpClient(400, MEDIA_TYPE, content);
 
     try {

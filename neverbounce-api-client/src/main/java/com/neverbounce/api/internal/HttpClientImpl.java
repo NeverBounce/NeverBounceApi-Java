@@ -11,7 +11,7 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonParser;
 import com.neverbounce.api.client.exception.NeverbounceApiException;
-import com.neverbounce.api.client.exception.NeverbounceIOException;
+import com.neverbounce.api.client.exception.NeverbounceIoException;
 import com.neverbounce.api.model.Response;
 import com.neverbounce.api.model.Status;
 import java.io.IOException;
@@ -66,7 +66,7 @@ public class HttpClientImpl implements HttpClient {
     } catch (HttpResponseException hre) {
       throw translateHttpResponseException(hre);
     } catch (IOException ioe) {
-      throw new NeverbounceIOException(ioe);
+      throw new NeverbounceIoException(ioe);
     }
   }
 
@@ -94,7 +94,7 @@ public class HttpClientImpl implements HttpClient {
       JsonParser jsonParser = JSON_FACTORY.createJsonParser(hre.getContent());
       neverbounceApiException = jsonParser.parse(NeverbounceApiException.class);
     } catch (IOException ioe) {
-      return new NeverbounceIOException(ioe);
+      return new NeverbounceIoException(ioe);
     }
 
     return neverbounceApiException;

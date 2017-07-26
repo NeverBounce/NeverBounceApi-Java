@@ -8,7 +8,8 @@ import com.neverbounce.api.model.AccountInfoRequest;
  *
  * @author Laszlo Csontos
  * @since 4.0.0
- */public final class NeverbounceClientImpl implements NeverbounceClient {
+ */
+public final class NeverbounceClientImpl implements NeverbounceClient {
 
   private final HttpClient httpClient;
 

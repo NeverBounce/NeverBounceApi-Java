@@ -11,13 +11,13 @@ import java.io.Reader;
  * @author Laszlo Csontos
  * @since 4.0.0
  */
-public final class IOUtils {
+final class IoUtils {
 
-  private IOUtils() {
+  private IoUtils() {
   }
 
   public static InputStream getResource(String resourceName) {
-    return IOUtils.class.getClassLoader().getResourceAsStream(resourceName);
+    return IoUtils.class.getClassLoader().getResourceAsStream(resourceName);
   }
 
   public static String getResourceAsString(String resourceName) throws IOException {
@@ -31,7 +31,7 @@ public final class IOUtils {
 
     Reader in = new InputStreamReader(inputStream, "UTF-8");
     int count = -1;
-    while((count = in.read(buffer, 0, buffer.length)) >= 0) {
+    while ((count = in.read(buffer, 0, buffer.length)) >= 0) {
       stringBuilder.append(buffer, 0, count);
     }
 
