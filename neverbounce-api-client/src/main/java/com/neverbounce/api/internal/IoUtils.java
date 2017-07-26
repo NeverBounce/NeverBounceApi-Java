@@ -11,19 +11,39 @@ import java.io.Reader;
  * @author Laszlo Csontos
  * @since 4.0.0
  */
-final class IoUtils {
+public final class IoUtils {
 
   private IoUtils() {
   }
 
+  /**
+   * Loads a resource from the classpath.
+   *
+   * @param resourceName Resource name
+   * @return InputStream
+   */
   public static InputStream getResource(String resourceName) {
     return IoUtils.class.getClassLoader().getResourceAsStream(resourceName);
   }
 
+  /**
+   * Loads a resource from the classpath as a {@code String}
+   *
+   * @param resourceName
+   * @return resource as a string
+   * @throws IOException
+   */
   public static String getResourceAsString(String resourceName) throws IOException {
     return toString(getResource(resourceName));
   }
 
+  /**
+   * Converts an {@link InputStream} to a {@link String}.
+   *
+   * @param inputStream InputStream
+   * @return InputStream as a String
+   * @throws IOException upon I/O errors
+   */
   public static String toString(InputStream inputStream) throws IOException {
     int bufferSize = 1024;
     char[] buffer = new char[bufferSize];
