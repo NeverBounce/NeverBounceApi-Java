@@ -7,6 +7,7 @@ import com.neverbounce.api.client.NeverbounceClient;
 import com.neverbounce.api.client.NeverbounceClientFactory;
 import com.neverbounce.api.model.AccountInfoRequest;
 import com.neverbounce.api.model.AccountInfoResponse;
+import com.neverbounce.api.model.JobsResultsResponse;
 import com.neverbounce.api.model.Response;
 import com.neverbounce.api.model.SingleCheckResponse;
 import java.io.PrintWriter;
@@ -61,6 +62,15 @@ public class Main {
             .execute();
 
     printJson(singleCheckResponse);
+
+    // Job results
+    JobsResultsResponse jobsResultsResponse = neverbounceClient
+        .prepareJobsResultsRequest()
+        .withJobId(1)
+        .build()
+        .execute();
+
+    printJson(jobsResultsResponse);
   }
 
   private static void printJson(Response response) throws Exception {
