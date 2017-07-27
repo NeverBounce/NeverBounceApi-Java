@@ -6,7 +6,7 @@ import com.google.api.client.util.Key;
  * @author Laszlo Csontos
  * @since 4.0.0
  */
-public class AccountInfoResponse extends BaseResponse {
+public class AccountInfoResponse extends GenericResponse {
 
   @Key("billing_type")
   private String billingType;

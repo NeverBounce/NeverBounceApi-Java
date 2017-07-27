@@ -10,7 +10,7 @@ import java.util.Set;
  * @author Laszlo Csontos
  * @since 4.0.0
  */
-public class SingleCheckResponse extends BaseResponse {
+public class SingleCheckResponse extends GenericResponse {
 
     @Key
     private Result result;
