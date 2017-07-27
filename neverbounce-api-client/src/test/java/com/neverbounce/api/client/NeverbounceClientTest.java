@@ -5,10 +5,7 @@ import static org.mockito.Mockito.*;
 
 import com.neverbounce.api.internal.HttpClient;
 import com.neverbounce.api.internal.NeverbounceClientImpl;
-import com.neverbounce.api.model.AccountInfoRequest;
-import com.neverbounce.api.model.AccountInfoResponse;
-import com.neverbounce.api.model.SingleCheckRequest;
-import com.neverbounce.api.model.SingleCheckResponse;
+import com.neverbounce.api.model.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -63,6 +60,27 @@ public class NeverbounceClientTest {
     SingleCheckResponse singleCheckResponse = singleCheckRequest.execute();
 
     assertNotNull(singleCheckResponse);
+  }
+
+  @Test
+  public void testJobsResultsRequest() {
+    when(
+            httpClient.getForObject(
+                    eq(JobsResultsRequest.PATH),
+                    any(JobsResultsRequest.class),
+                    eq(JobsResultsResponse.class))
+    ).thenReturn(
+            new JobsResultsResponse()
+    );
+
+    JobsResultsRequest jobsResultsRequest = neverbounceClient
+            .prepareJobsResultsRequest()
+            .withJobId(1)
+            .build();
+
+    JobsResultsResponse jobsResultsResponse = jobsResultsRequest.execute();
+
+    assertNotNull(jobsResultsResponse);
   }
 
 }
