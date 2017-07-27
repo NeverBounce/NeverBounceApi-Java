@@ -10,11 +10,14 @@ import com.google.api.client.http.HttpResponseException;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonParser;
+import com.google.api.client.util.Data;
 import com.neverbounce.api.client.exception.NeverbounceApiException;
 import com.neverbounce.api.client.exception.NeverbounceIoException;
+import com.neverbounce.api.model.Request;
 import com.neverbounce.api.model.Response;
 import com.neverbounce.api.model.Status;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * Internal use only.
@@ -50,7 +53,17 @@ public class HttpClientImpl implements HttpClient {
 
   @Override
   public <R extends Response> R getForObject(String path, Class<R> responseClass) {
+    return getForObject(path, null, responseClass);
+  }
+
+  @Override
+  public <R extends Response> R getForObject(String path, Request<R> request, Class<R> responseClass) {
     GenericUrl url = new GenericUrl(API_BASE_URL + "/" + path);
+
+    if (request != null) {
+      Map<String, Object> requestData = Data.mapOf(request);
+      url.putAll(requestData);
+    }
 
     try {
       HttpRequest httpRequest = requestFactory.buildGetRequest(url);

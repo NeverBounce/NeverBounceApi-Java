@@ -2,6 +2,7 @@ package com.neverbounce.api.internal;
 
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.gson.GsonFactory;
+import com.neverbounce.api.model.Request;
 import com.neverbounce.api.model.Response;
 
 /**
@@ -21,5 +22,7 @@ public interface HttpClient {
   JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
 
   <R extends Response> R getForObject(String path, Class<R> responseClass);
+
+  <R extends Response> R getForObject(String path, Request<R> request, Class<R> responseClass);
 
 }

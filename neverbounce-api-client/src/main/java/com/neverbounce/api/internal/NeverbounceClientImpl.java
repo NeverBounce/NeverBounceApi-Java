@@ -2,6 +2,7 @@ package com.neverbounce.api.internal;
 
 import com.neverbounce.api.client.NeverbounceClient;
 import com.neverbounce.api.model.AccountInfoRequest;
+import com.neverbounce.api.model.SingleCheckRequest;
 
 /**
  * Internal use only.
@@ -20,6 +21,11 @@ public final class NeverbounceClientImpl implements NeverbounceClient {
   @Override
   public AccountInfoRequest createAccountInfoRequest() {
     return new AccountInfoRequest(httpClient);
+  }
+
+  @Override
+  public SingleCheckRequest.Builder prepareSingleCheckRequest() {
+    return new SingleCheckRequest.Builder(httpClient);
   }
 
 }
