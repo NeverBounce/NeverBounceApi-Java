@@ -32,7 +32,13 @@ public enum Flag {
      * This email is registered on a free-mail host. (e.g: yahoo.com, hotmail.com)
      */
     @Value("free_email_host")
-    FREE_EMAIL_HOST("This email is registered on a free-mail host. (e.g: yahoo.com, hotmail.com)");
+    FREE_EMAIL_HOST("This email is registered on a free-mail host. (e.g: yahoo.com, hotmail.com)"),
+
+    /**
+     * SMTP connectable.
+     */
+    @Value("smtp_connectable")
+    SMTP_CONNECTABLE("");
 
     private String description;
 

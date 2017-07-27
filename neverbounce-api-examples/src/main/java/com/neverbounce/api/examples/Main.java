@@ -9,6 +9,9 @@ import com.neverbounce.api.model.AccountInfoRequest;
 import com.neverbounce.api.model.AccountInfoResponse;
 import java.io.PrintWriter;
 import java.io.Writer;
+
+import com.neverbounce.api.model.Response;
+import com.neverbounce.api.model.SingleCheckResponse;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -42,14 +45,31 @@ public class Main {
     NeverbounceClient neverbounceClient =
         NeverbounceClientFactory.create(commandLine.getOptionValue("a"));
 
+    // Account info
     AccountInfoRequest accountInfoRequest = neverbounceClient.createAccountInfoRequest();
     AccountInfoResponse accountInfoResponse = accountInfoRequest.execute();
+    printJson(accountInfoResponse);
 
+    // Single check
+
+    SingleCheckResponse singleCheckResponse = neverbounceClient
+            .prepareSingleCheckRequest()
+            .withEmail("github@laszlocsontos.com")
+            .withAddressInfo(true)
+            .withCreditsInfo(true)
+            .withTimeout(300)
+            .build()
+            .execute();
+
+    printJson(singleCheckResponse);
+  }
+
+  private static void printJson(Response response) throws Exception {
     Writer writer = new PrintWriter(System.out);
     JsonGenerator jsonGenerator = JSON_FACTORY.createJsonGenerator(writer);
-    jsonGenerator.serialize(accountInfoResponse);
-
-    writer.close();
+    jsonGenerator.serialize(response);
+    writer.write('\n');
+    writer.flush();
   }
 
 }
