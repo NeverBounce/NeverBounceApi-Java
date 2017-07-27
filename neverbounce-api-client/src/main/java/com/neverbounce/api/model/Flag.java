@@ -38,7 +38,13 @@ public enum Flag {
      * SMTP connectable.
      */
     @Value("smtp_connectable")
-    SMTP_CONNECTABLE("");
+    SMTP_CONNECTABLE(""),
+
+    /**
+     * Role Account.
+     */
+    @Value("role_account")
+    ROLE_ACCOUNT("");
 
     private String description;
 

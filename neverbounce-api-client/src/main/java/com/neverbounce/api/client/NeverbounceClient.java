@@ -1,6 +1,7 @@
 package com.neverbounce.api.client;
 
 import com.neverbounce.api.model.AccountInfoRequest;
+import com.neverbounce.api.model.JobsResultsRequest;
 import com.neverbounce.api.model.SingleCheckRequest;
 
 /**
@@ -14,5 +15,7 @@ public interface NeverbounceClient {
   AccountInfoRequest createAccountInfoRequest();
 
   SingleCheckRequest.Builder prepareSingleCheckRequest();
+
+  JobsResultsRequest.Builder prepareJobsResultsRequest();
 
 }
