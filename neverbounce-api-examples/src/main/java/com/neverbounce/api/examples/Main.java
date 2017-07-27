@@ -7,11 +7,10 @@ import com.neverbounce.api.client.NeverbounceClient;
 import com.neverbounce.api.client.NeverbounceClientFactory;
 import com.neverbounce.api.model.AccountInfoRequest;
 import com.neverbounce.api.model.AccountInfoResponse;
-import java.io.PrintWriter;
-import java.io.Writer;
-
 import com.neverbounce.api.model.Response;
 import com.neverbounce.api.model.SingleCheckResponse;
+import java.io.PrintWriter;
+import java.io.Writer;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;

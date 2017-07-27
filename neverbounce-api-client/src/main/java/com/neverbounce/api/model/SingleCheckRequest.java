@@ -26,7 +26,7 @@ public class SingleCheckRequest extends AbstractRequest<SingleCheckResponse> {
   @Key
   private final Integer timeout;
 
-  public SingleCheckRequest(
+  SingleCheckRequest(
       HttpClient httpClient, String email, Integer addressInfo, Integer creditsInfo,
       Integer timeout) {
 

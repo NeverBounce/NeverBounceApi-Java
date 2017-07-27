@@ -23,7 +23,7 @@ public class JobsResultsRequest extends AbstractRequest<JobsResultsResponse> {
   @Key("items_per_page")
   private final Integer itemsPerPage;
 
-  public JobsResultsRequest(
+  JobsResultsRequest(
       HttpClient httpClient, long jobId, Integer page, Integer itemsPerPage) {
     super(httpClient);
     this.jobId = jobId;
