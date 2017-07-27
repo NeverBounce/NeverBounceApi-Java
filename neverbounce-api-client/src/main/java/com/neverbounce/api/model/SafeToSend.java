@@ -6,6 +6,6 @@ package com.neverbounce.api.model;
  */
 public enum SafeToSend {
 
-    YES, NO, MAYBE
+  YES, NO, MAYBE
 
 }

@@ -8,19 +8,19 @@ import com.neverbounce.api.internal.HttpClient;
  */
 abstract class AbstractRequestBuilder<R extends Request> {
 
-    final HttpClient httpClient;
+  final HttpClient httpClient;
 
-    AbstractRequestBuilder(HttpClient httpClient) {
-        this.httpClient = httpClient;
-    }
+  AbstractRequestBuilder(HttpClient httpClient) {
+    this.httpClient = httpClient;
+  }
 
-    public final R build() {
-        validate();
-        return doBuild();
-    }
+  public final R build() {
+    validate();
+    return doBuild();
+  }
 
-    protected abstract void validate();
+  protected abstract void validate();
 
-    protected abstract R doBuild();
+  protected abstract R doBuild();
 
 }

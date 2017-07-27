@@ -8,26 +8,26 @@ import com.google.api.client.util.Key;
  */
 public class JobResult {
 
-    @Key("data")
-    private EmailData emailData;
+  @Key("data")
+  private EmailData emailData;
 
-    @Key
-    private SingleCheckResponse verification;
+  @Key
+  private SingleCheckResponse verification;
 
-    public EmailData getEmailData() {
-        return emailData;
-    }
+  public EmailData getEmailData() {
+    return emailData;
+  }
 
-    public void setEmailData(EmailData emailData) {
-        this.emailData = emailData;
-    }
+  public void setEmailData(EmailData emailData) {
+    this.emailData = emailData;
+  }
 
-    public SingleCheckResponse getVerification() {
-        return verification;
-    }
+  public SingleCheckResponse getVerification() {
+    return verification;
+  }
 
-    public void setVerification(SingleCheckResponse verification) {
-        this.verification = verification;
-    }
+  public void setVerification(SingleCheckResponse verification) {
+    this.verification = verification;
+  }
 
 }

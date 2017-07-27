@@ -1,7 +1,9 @@
 package com.neverbounce.api.internal;
 
 import static com.google.api.client.json.Json.MEDIA_TYPE;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.LowLevelHttpRequest;
@@ -48,7 +50,8 @@ public class HttpClientTest {
     }
   }
 
-  private HttpClient createHttpClient(final int statusCode, final String mediaType, final String content) {
+  private HttpClient createHttpClient(final int statusCode, final String mediaType,
+      final String content) {
     HttpTransport httpTransport = new MockHttpTransport() {
 
       @Override

@@ -7,4 +7,5 @@ package com.neverbounce.api.model;
  * @since 4.0.0
  */
 public class JobsResultsResponse extends PaginatedResponse<JobResult> {
+
 }

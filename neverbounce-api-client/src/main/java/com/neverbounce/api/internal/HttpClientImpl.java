@@ -57,7 +57,8 @@ public class HttpClientImpl implements HttpClient {
   }
 
   @Override
-  public <R extends Response> R getForObject(String path, Request<R> request, Class<R> responseClass) {
+  public <R extends Response> R getForObject(String path, Request<R> request,
+      Class<R> responseClass) {
     GenericUrl url = new GenericUrl(API_BASE_URL + "/" + path);
 
     if (request != null) {

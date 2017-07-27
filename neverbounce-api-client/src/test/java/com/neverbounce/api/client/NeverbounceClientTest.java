@@ -1,11 +1,18 @@
 package com.neverbounce.api.client;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.when;
 
 import com.neverbounce.api.internal.HttpClient;
 import com.neverbounce.api.internal.NeverbounceClientImpl;
-import com.neverbounce.api.model.*;
+import com.neverbounce.api.model.AccountInfoRequest;
+import com.neverbounce.api.model.AccountInfoResponse;
+import com.neverbounce.api.model.JobsResultsRequest;
+import com.neverbounce.api.model.JobsResultsResponse;
+import com.neverbounce.api.model.SingleCheckRequest;
+import com.neverbounce.api.model.SingleCheckResponse;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,18 +51,18 @@ public class NeverbounceClientTest {
   @Test
   public void testSingleCheckRequest() {
     when(
-            httpClient.getForObject(
-                    eq(SingleCheckRequest.PATH),
-                    any(SingleCheckRequest.class),
-                    eq(SingleCheckResponse.class))
+        httpClient.getForObject(
+            eq(SingleCheckRequest.PATH),
+            any(SingleCheckRequest.class),
+            eq(SingleCheckResponse.class))
     ).thenReturn(
-            new SingleCheckResponse()
+        new SingleCheckResponse()
     );
 
     SingleCheckRequest singleCheckRequest = neverbounceClient
-            .prepareSingleCheckRequest()
-            .withEmail("github@laszlocsontos.com")
-            .build();
+        .prepareSingleCheckRequest()
+        .withEmail("github@laszlocsontos.com")
+        .build();
 
     SingleCheckResponse singleCheckResponse = singleCheckRequest.execute();
 
@@ -65,18 +72,18 @@ public class NeverbounceClientTest {
   @Test
   public void testJobsResultsRequest() {
     when(
-            httpClient.getForObject(
-                    eq(JobsResultsRequest.PATH),
-                    any(JobsResultsRequest.class),
-                    eq(JobsResultsResponse.class))
+        httpClient.getForObject(
+            eq(JobsResultsRequest.PATH),
+            any(JobsResultsRequest.class),
+            eq(JobsResultsResponse.class))
     ).thenReturn(
-            new JobsResultsResponse()
+        new JobsResultsResponse()
     );
 
     JobsResultsRequest jobsResultsRequest = neverbounceClient
-            .prepareJobsResultsRequest()
-            .withJobId(1)
-            .build();
+        .prepareJobsResultsRequest()
+        .withJobId(1)
+        .build();
 
     JobsResultsResponse jobsResultsResponse = jobsResultsRequest.execute();
 
