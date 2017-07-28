@@ -8,8 +8,10 @@ import com.neverbounce.api.model.AccountInfoRequest;
 import com.neverbounce.api.model.AccountInfoResponse;
 import com.neverbounce.api.model.JobsCreateResponse;
 import com.neverbounce.api.model.JobsDeleteResponse;
+import com.neverbounce.api.model.JobsParseResponse;
 import com.neverbounce.api.model.JobsResultsResponse;
 import com.neverbounce.api.model.JobsSearchResponse;
+import com.neverbounce.api.model.JobsStartResponse;
 import com.neverbounce.api.model.JobsStatusResponse;
 import com.neverbounce.api.model.SingleCheckResponse;
 import org.apache.commons.cli.CommandLine;
@@ -74,7 +76,7 @@ public class Main {
 
     printJson(jobsCreateResponse);
 
-    long jobId = 280319; //jobsCreateResponse.getJobId();
+    long jobId = jobsCreateResponse.getJobId();
 
     // Job results
     JobsResultsResponse jobsResultsResponse = neverbounceClient
@@ -102,6 +104,25 @@ public class Main {
         .execute();
 
     printJson(jobsSearchResponse);
+
+    // Job start
+    JobsStartResponse jobsStartResponse = neverbounceClient
+        .prepareJobsStartRequest()
+        .withJobId(jobId)
+        .build()
+        .execute();
+
+    printJson(jobsStartResponse);
+
+    // Job parse
+    JobsParseResponse jobsParseResponse = neverbounceClient
+        .prepareJobsParseRequest()
+        .withJobId(jobId)
+        .withAutoStart(true)
+        .build()
+        .execute();
+
+    printJson(jobsParseResponse);
 
     // Job delete
     JobsDeleteResponse jobsDeleteResponse = neverbounceClient
