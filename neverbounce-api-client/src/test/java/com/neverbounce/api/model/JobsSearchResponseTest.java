@@ -2,9 +2,12 @@ package com.neverbounce.api.model;
 
 import static org.junit.Assert.*;
 
+import org.junit.Ignore;
+
 /**
  * Created by lcsontos on 7/28/17.
  */
+@Ignore
 public class JobsSearchResponseTest extends AbstractResponseTest<JobsSearchResponse> {
 
   @Override
