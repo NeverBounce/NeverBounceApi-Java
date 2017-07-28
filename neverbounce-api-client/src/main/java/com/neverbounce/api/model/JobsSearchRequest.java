@@ -10,12 +10,9 @@ import com.neverbounce.api.internal.HttpClient;
  * @author Laszlo Csontos
  * @since 4.0.0
  */
-public class JobsSearchRequest extends AbstractRequest<JobsSearchResponse> {
+public class JobsSearchRequest extends AbstractJobsRequest<JobsSearchResponse> {
 
   public static final String PATH = "jobs/search";
-
-  @Key("job_id")
-  private final Long jobId;
 
   @Key
   private final String filename;
@@ -49,8 +46,7 @@ public class JobsSearchRequest extends AbstractRequest<JobsSearchResponse> {
       Integer failed, Integer manualReview, Integer unpurchased, Integer page,
       Integer itemsPerPage) {
 
-    super(httpClient);
-    this.jobId = jobId;
+    super(httpClient, jobId);
     this.filename = filename;
     this.completed = completed;
     this.processing = processing;
@@ -67,9 +63,8 @@ public class JobsSearchRequest extends AbstractRequest<JobsSearchResponse> {
     return getHttpClient().getForObject(PATH, this, JobsSearchResponse.class);
   }
 
-  public static class Builder extends AbstractRequestBuilder<JobsSearchRequest> {
+  public static class Builder extends AbstractJobsRequest.Builder<JobsSearchRequest> {
 
-    private Long jobId;
     private String filename;
     private Boolean completed;
     private Boolean processing;
@@ -85,52 +80,47 @@ public class JobsSearchRequest extends AbstractRequest<JobsSearchResponse> {
       super(httpClient);
     }
 
-    public JobsSearchRequest.Builder withJobId(long jobId) {
-      this.jobId = jobId;
-      return this;
-    }
-
-    public JobsSearchRequest.Builder withFilename(String filename) {
+    public Builder withFilename(String filename) {
       this.filename = filename;
       return this;
     }
 
-    public JobsSearchRequest.Builder withCompleted(Boolean completed) {
+    public Builder withCompleted(Boolean completed) {
       this.completed = completed;
       return this;
     }
 
-    public JobsSearchRequest.Builder withProcessing(Boolean processing) {
+    public Builder withProcessing(Boolean processing) {
       this.processing = processing;
       return this;
     }
 
-    public JobsSearchRequest.Builder withIndexing(Boolean indexing) {
+    public Builder withIndexing(Boolean indexing) {
       this.indexing = indexing;
       return this;
     }
 
-    public JobsSearchRequest.Builder withFailed(Boolean failed) {
+    public Builder withFailed(Boolean failed) {
       this.failed = failed;
       return this;
     }
 
-    public JobsSearchRequest.Builder withManualReview(Boolean manualReview) {
+    public Builder withManualReview(Boolean manualReview) {
       this.manualReview = manualReview;
       return this;
     }
 
-    public JobsSearchRequest.Builder withUnpurchased(Boolean unpurchased) {
+    public Builder withUnpurchased(Boolean unpurchased) {
       this.unpurchased = unpurchased;
       return this;
     }
 
-    public JobsSearchRequest.Builder withPage(Integer page) {
+    public Builder withPage(Integer page) {
       this.page = page;
       return this;
     }
 
-    public JobsSearchRequest.Builder withItemsPerPage(Integer itemsPerPage) {
+    public Builder withItemsPerPage(Integer itemsPerPage) {
       this.itemsPerPage = itemsPerPage;
       return this;
     }
@@ -154,7 +144,7 @@ public class JobsSearchRequest extends AbstractRequest<JobsSearchResponse> {
 
     @Override
     protected void validate() {
-      Preconditions.checkState(jobId != null, "job_id must not be null");
+      // All arguments of a search request might be null / empty, hence we perform no checks here.
     }
 
   }

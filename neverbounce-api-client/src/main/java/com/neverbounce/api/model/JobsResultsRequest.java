@@ -10,12 +10,9 @@ import com.neverbounce.api.internal.HttpClient;
  * @author Laszlo Csontos
  * @since 4.0.0
  */
-public class JobsResultsRequest extends AbstractRequest<JobsResultsResponse> {
+public class JobsResultsRequest extends AbstractJobsRequest<JobsResultsResponse> {
 
   public static final String PATH = "jobs/results";
-
-  @Key("job_id")
-  private final long jobId;
 
   @Key
   private final Integer page;
@@ -25,8 +22,8 @@ public class JobsResultsRequest extends AbstractRequest<JobsResultsResponse> {
 
   JobsResultsRequest(
       HttpClient httpClient, long jobId, Integer page, Integer itemsPerPage) {
-    super(httpClient);
-    this.jobId = jobId;
+
+    super(httpClient, jobId);
     this.page = page;
     this.itemsPerPage = itemsPerPage;
   }
@@ -36,9 +33,8 @@ public class JobsResultsRequest extends AbstractRequest<JobsResultsResponse> {
     return getHttpClient().getForObject(PATH, this, JobsResultsResponse.class);
   }
 
-  public static class Builder extends AbstractRequestBuilder<JobsResultsRequest> {
+  public static class Builder extends AbstractJobsRequest.Builder<JobsResultsRequest> {
 
-    private Long jobId;
     private Integer page;
     private Integer itemsPerPage;
 
@@ -46,17 +42,12 @@ public class JobsResultsRequest extends AbstractRequest<JobsResultsResponse> {
       super(httpClient);
     }
 
-    public JobsResultsRequest.Builder withJobId(long jobId) {
-      this.jobId = jobId;
-      return this;
-    }
-
-    public JobsResultsRequest.Builder withPage(Integer page) {
+    public Builder withPage(Integer page) {
       this.page = page;
       return this;
     }
 
-    public JobsResultsRequest.Builder withItemsPerPage(Integer itemsPerPage) {
+    public Builder withItemsPerPage(Integer itemsPerPage) {
       this.itemsPerPage = itemsPerPage;
       return this;
     }
@@ -64,11 +55,6 @@ public class JobsResultsRequest extends AbstractRequest<JobsResultsResponse> {
     @Override
     protected JobsResultsRequest doBuild() {
       return new JobsResultsRequest(httpClient, jobId, page, itemsPerPage);
-    }
-
-    @Override
-    protected void validate() {
-      Preconditions.checkState(jobId != null, "job_id must not be null");
     }
 
   }
