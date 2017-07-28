@@ -2,6 +2,7 @@ package com.neverbounce.api.client;
 
 import com.neverbounce.api.model.AccountInfoRequest;
 import com.neverbounce.api.model.JobsResultsRequest;
+import com.neverbounce.api.model.JobsSearchRequest;
 import com.neverbounce.api.model.JobsStatusRequest;
 import com.neverbounce.api.model.SingleCheckRequest;
 
@@ -20,5 +21,7 @@ public interface NeverbounceClient {
   JobsResultsRequest.Builder prepareJobsResultsRequest();
 
   JobsStatusRequest.Builder prepareJobsStatusRequest();
+
+  JobsSearchRequest.Builder prepareJobsSearchRequest();
 
 }
