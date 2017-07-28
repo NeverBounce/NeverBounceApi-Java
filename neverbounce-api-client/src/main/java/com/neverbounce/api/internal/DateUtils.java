@@ -13,11 +13,20 @@ import java.util.Date;
  */
 public final class DateUtils {
 
-  private static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+  /**
+   * Date format internal to Neverbounce's API.
+   */
+  public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
   private DateUtils() {
   }
 
+  /**
+   * Converts the given {@code dateAsString} to {@link Date}.
+   *
+   * @param dateAsString date as a string
+   * @return parsed {@link Date}
+   */
   public static Date toDate(String dateAsString) {
     try {
       DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
@@ -29,6 +38,12 @@ public final class DateUtils {
     }
   }
 
+  /**
+   * Converts the given {@code date} to {@link String}.
+   *
+   * @param date parsed {@link Date}
+   * @return date as a string
+   */
   public static String fromDate(Date date) {
     DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
     return dateFormat.format(date);
