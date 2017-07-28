@@ -1,6 +1,7 @@
 package com.neverbounce.api.examples;
 
 import static com.neverbounce.api.internal.HttpClient.JSON_FACTORY;
+import static com.neverbounce.api.internal.JsonUtils.printJson;
 
 import com.google.api.client.json.JsonGenerator;
 import com.neverbounce.api.client.NeverbounceClient;
@@ -90,14 +91,6 @@ public class Main {
         .execute();
 
     printJson(jobsSearchResponse);
-  }
-
-  private static void printJson(Response response) throws Exception {
-    Writer writer = new PrintWriter(System.out);
-    JsonGenerator jsonGenerator = JSON_FACTORY.createJsonGenerator(writer);
-    jsonGenerator.serialize(response);
-    writer.write('\n');
-    writer.flush();
   }
 
 }

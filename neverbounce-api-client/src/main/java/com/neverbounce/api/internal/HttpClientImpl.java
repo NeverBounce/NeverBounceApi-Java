@@ -9,6 +9,7 @@ import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.http.HttpResponseException;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.http.json.JsonHttpContent;
 import com.google.api.client.json.JsonParser;
 import com.google.api.client.util.Data;
 import com.neverbounce.api.client.exception.NeverbounceApiException;
@@ -17,6 +18,7 @@ import com.neverbounce.api.model.Request;
 import com.neverbounce.api.model.Response;
 import com.neverbounce.api.model.Status;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -68,6 +70,29 @@ public class HttpClientImpl implements HttpClient {
 
     try {
       HttpRequest httpRequest = requestFactory.buildGetRequest(url);
+      return execute(httpRequest, responseClass);
+    } catch (IOException ioe) {
+      throw new NeverbounceIoException(ioe);
+    }
+  }
+
+  @Override
+  public <R extends Response> R postForObject(String path, Request<R> request,
+      Class<R> responseClass) {
+
+    GenericUrl url = new GenericUrl(API_BASE_URL + "/" + path);
+
+    try {
+      HttpRequest httpRequest =
+          requestFactory.buildPostRequest(url, new JsonHttpContent(JSON_FACTORY, request));
+      return execute(httpRequest, responseClass);
+    } catch (IOException ioe) {
+      throw new NeverbounceIoException(ioe);
+    }
+  }
+
+  private <R extends Response> R execute(HttpRequest httpRequest, Class<R> responseClass) {
+    try {
       prepareRequest(httpRequest);
 
       R response = httpRequest.execute().parseAs(responseClass);
@@ -93,7 +118,11 @@ public class HttpClientImpl implements HttpClient {
     }
 
     if (HTTP_METHOD_POST.equals(requestMethod)) {
-      // TODO: Add api_key as a new form parameter
+      JsonHttpContent jsonHttpContent = (JsonHttpContent)httpRequest.getContent();
+      Map<String, Object> requestData =
+          new HashMap<String, Object>(Data.mapOf(jsonHttpContent.getData()));
+      requestData.put(API_KEY, apiKey);
+      httpRequest.setContent(new JsonHttpContent(JSON_FACTORY, requestData));
       return;
     }
 

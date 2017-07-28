@@ -25,4 +25,6 @@ public interface HttpClient {
 
   <R extends Response> R getForObject(String path, Request<R> request, Class<R> responseClass);
 
+  <R extends Response> R postForObject(String path, Request<R> request, Class<R> responseClass);
+
 }

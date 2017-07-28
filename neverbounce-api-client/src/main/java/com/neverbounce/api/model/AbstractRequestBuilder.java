@@ -14,7 +14,7 @@ abstract class AbstractRequestBuilder<R extends Request> {
     this.httpClient = httpClient;
   }
 
-  public final R build() {
+  public R build() {
     validate();
     return doBuild();
   }

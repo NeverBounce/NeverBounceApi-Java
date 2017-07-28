@@ -2,6 +2,8 @@ package com.neverbounce.api.internal;
 
 import com.neverbounce.api.client.NeverbounceClient;
 import com.neverbounce.api.model.AccountInfoRequest;
+import com.neverbounce.api.model.JobsCreateWithRemoteUrlRequest;
+import com.neverbounce.api.model.JobsCreateWithSuppliedJsonRequest;
 import com.neverbounce.api.model.JobsResultsRequest;
 import com.neverbounce.api.model.JobsSearchRequest;
 import com.neverbounce.api.model.JobsStatusRequest;
@@ -44,6 +46,16 @@ public final class NeverbounceClientImpl implements NeverbounceClient {
   @Override
   public JobsSearchRequest.Builder prepareJobsSearchRequest() {
     return new JobsSearchRequest.Builder(httpClient);
+  }
+
+  @Override
+  public JobsCreateWithRemoteUrlRequest.Builder prepareJobsCreateWithRemoteUrlRequest() {
+    return new JobsCreateWithRemoteUrlRequest.Builder(httpClient);
+  }
+
+  @Override
+  public JobsCreateWithSuppliedJsonRequest.Builder prepareJobsCreateWithSuppliedJsonRequest() {
+    return new JobsCreateWithSuppliedJsonRequest.Builder(httpClient);
   }
 
 }

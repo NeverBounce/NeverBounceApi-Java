@@ -1,5 +1,7 @@
 package com.neverbounce.api.model;
 
+import static com.neverbounce.api.internal.IntegerUtils.toInteger;
+
 import com.google.api.client.util.Key;
 import com.google.api.client.util.Preconditions;
 import com.neverbounce.api.internal.HttpClient;
@@ -66,9 +68,6 @@ public class JobsSearchRequest extends AbstractRequest<JobsSearchResponse> {
   }
 
   public static class Builder extends AbstractRequestBuilder<JobsSearchRequest> {
-
-    private static Integer FALSE = new Integer(0);
-    private static Integer TRUE = new Integer(1);
 
     private Long jobId;
     private String filename;
@@ -156,17 +155,6 @@ public class JobsSearchRequest extends AbstractRequest<JobsSearchResponse> {
     @Override
     protected void validate() {
       Preconditions.checkState(jobId != null, "job_id must not be null");
-    }
-
-    private Integer toInteger(Boolean value) {
-      if (value == null) {
-        return null;
-      }
-      if (value) {
-        return TRUE;
-      }
-
-      return FALSE;
     }
 
   }

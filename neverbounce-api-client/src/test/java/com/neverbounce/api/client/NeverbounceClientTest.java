@@ -9,6 +9,9 @@ import com.neverbounce.api.internal.HttpClient;
 import com.neverbounce.api.internal.NeverbounceClientImpl;
 import com.neverbounce.api.model.AccountInfoRequest;
 import com.neverbounce.api.model.AccountInfoResponse;
+import com.neverbounce.api.model.JobsCreateResponse;
+import com.neverbounce.api.model.JobsCreateWithRemoteUrlRequest;
+import com.neverbounce.api.model.JobsCreateWithSuppliedJsonRequest;
 import com.neverbounce.api.model.JobsResultsRequest;
 import com.neverbounce.api.model.JobsResultsResponse;
 import com.neverbounce.api.model.JobsSearchRequest;
@@ -134,6 +137,56 @@ public class NeverbounceClientTest {
     JobsSearchResponse jobsSearchResponse = jobsSearchRequest.execute();
 
     assertNotNull(jobsSearchResponse);
+  }
+
+  @Test
+  public void testJobsCreateWithRemoteUrlRequest() {
+    when(
+        httpClient.postForObject(
+            eq(JobsCreateWithRemoteUrlRequest.PATH),
+            any(JobsCreateWithRemoteUrlRequest.class),
+            eq(JobsCreateResponse.class))
+    ).thenReturn(
+        new JobsCreateResponse()
+    );
+
+    JobsCreateWithRemoteUrlRequest jobsCreateWithRemoteUrlRequest =
+        (JobsCreateWithRemoteUrlRequest) neverbounceClient
+        .prepareJobsCreateWithRemoteUrlRequest()
+        .withInput("test.csv")
+        .withAutoParse(true)
+        .withAutoStart(true)
+        .withFilename("test.csv")
+        .build();
+
+    JobsCreateResponse jobsCreateResponse = jobsCreateWithRemoteUrlRequest.execute();
+
+    assertNotNull(jobsCreateResponse);
+  }
+
+  @Test
+  public void testJobsCreateWithSuppliedJsonRequest() {
+    when(
+        httpClient.postForObject(
+            eq(JobsCreateWithSuppliedJsonRequest.PATH),
+            any(JobsCreateWithSuppliedJsonRequest.class),
+            eq(JobsCreateResponse.class))
+    ).thenReturn(
+        new JobsCreateResponse()
+    );
+
+    JobsCreateWithSuppliedJsonRequest jobsCreateWithRemoteUrlRequest =
+        (JobsCreateWithSuppliedJsonRequest) neverbounceClient
+            .prepareJobsCreateWithSuppliedJsonRequest()
+            .addInput("github@laszlocsontos.com", "Laszlo Csontos")
+            .withAutoParse(true)
+            .withAutoStart(true)
+            .withFilename("test.csv")
+            .build();
+
+    JobsCreateResponse jobsCreateResponse = jobsCreateWithRemoteUrlRequest.execute();
+
+    assertNotNull(jobsCreateResponse);
   }
 
 }
