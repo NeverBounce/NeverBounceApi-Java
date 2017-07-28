@@ -12,6 +12,8 @@ import com.neverbounce.api.model.AccountInfoResponse;
 import com.neverbounce.api.model.JobsCreateResponse;
 import com.neverbounce.api.model.JobsCreateWithRemoteUrlRequest;
 import com.neverbounce.api.model.JobsCreateWithSuppliedJsonRequest;
+import com.neverbounce.api.model.JobsDeleteRequest;
+import com.neverbounce.api.model.JobsDeleteResponse;
 import com.neverbounce.api.model.JobsResultsRequest;
 import com.neverbounce.api.model.JobsResultsResponse;
 import com.neverbounce.api.model.JobsSearchRequest;
@@ -150,8 +152,7 @@ public class NeverbounceClientTest {
         new JobsCreateResponse()
     );
 
-    JobsCreateWithRemoteUrlRequest jobsCreateWithRemoteUrlRequest =
-        (JobsCreateWithRemoteUrlRequest) neverbounceClient
+    JobsCreateWithRemoteUrlRequest jobsCreateWithRemoteUrlRequest = neverbounceClient
         .prepareJobsCreateWithRemoteUrlRequest()
         .withInput("test.csv")
         .withAutoParse(true)
@@ -175,18 +176,38 @@ public class NeverbounceClientTest {
         new JobsCreateResponse()
     );
 
-    JobsCreateWithSuppliedJsonRequest jobsCreateWithRemoteUrlRequest =
-        (JobsCreateWithSuppliedJsonRequest) neverbounceClient
-            .prepareJobsCreateWithSuppliedJsonRequest()
-            .addInput("github@laszlocsontos.com", "Laszlo Csontos")
-            .withAutoParse(true)
-            .withAutoStart(true)
-            .withFilename("test.csv")
-            .build();
+    JobsCreateWithSuppliedJsonRequest jobsCreateWithRemoteUrlRequest = neverbounceClient
+        .prepareJobsCreateWithSuppliedJsonRequest()
+        .addInput("github@laszlocsontos.com", "Laszlo Csontos")
+        .withAutoParse(true)
+        .withAutoStart(true)
+        .withFilename("test.csv")
+        .build();
 
     JobsCreateResponse jobsCreateResponse = jobsCreateWithRemoteUrlRequest.execute();
 
     assertNotNull(jobsCreateResponse);
+  }
+
+  @Test
+  public void testJobsDeleteRequest() {
+    when(
+        httpClient.postForObject(
+            eq(JobsDeleteRequest.PATH),
+            any(JobsDeleteRequest.class),
+            eq(JobsDeleteResponse.class))
+    ).thenReturn(
+        new JobsDeleteResponse()
+    );
+
+    JobsDeleteRequest jobsDeleteRequest = neverbounceClient
+        .prepareJobsDeleteRequest()
+        .withJobId(1)
+        .build();
+
+    JobsDeleteResponse jobsDeleteResponse = jobsDeleteRequest.execute();
+
+    assertNotNull(jobsDeleteResponse);
   }
 
 }
