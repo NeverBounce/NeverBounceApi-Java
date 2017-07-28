@@ -42,7 +42,7 @@ public class JobsSearchRequest extends AbstractRequest<JobsSearchResponse> {
   @Key("items_per_page")
   private final Integer itemsPerPage;
 
-  public JobsSearchRequest(HttpClient httpClient, Long jobId,
+  JobsSearchRequest(HttpClient httpClient, Long jobId,
       String filename, Integer completed, Integer processing, Integer indexing,
       Integer failed, Integer manualReview, Integer unpurchased, Integer page,
       Integer itemsPerPage) {
