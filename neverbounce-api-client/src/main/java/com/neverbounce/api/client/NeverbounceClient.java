@@ -4,6 +4,7 @@ import com.neverbounce.api.model.AccountInfoRequest;
 import com.neverbounce.api.model.JobsCreateWithRemoteUrlRequest;
 import com.neverbounce.api.model.JobsCreateWithSuppliedJsonRequest;
 import com.neverbounce.api.model.JobsDeleteRequest;
+import com.neverbounce.api.model.JobsParseRequest;
 import com.neverbounce.api.model.JobsResultsRequest;
 import com.neverbounce.api.model.JobsSearchRequest;
 import com.neverbounce.api.model.JobsStartRequest;
@@ -35,5 +36,7 @@ public interface NeverbounceClient {
   JobsDeleteRequest.Builder prepareJobsDeleteRequest();
 
   JobsStartRequest.Builder prepareJobsStartRequest();
+
+  JobsParseRequest.Builder prepareJobsParseRequest();
 
 }

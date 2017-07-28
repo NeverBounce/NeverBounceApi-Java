@@ -14,6 +14,8 @@ import com.neverbounce.api.model.JobsCreateWithRemoteUrlRequest;
 import com.neverbounce.api.model.JobsCreateWithSuppliedJsonRequest;
 import com.neverbounce.api.model.JobsDeleteRequest;
 import com.neverbounce.api.model.JobsDeleteResponse;
+import com.neverbounce.api.model.JobsParseRequest;
+import com.neverbounce.api.model.JobsParseResponse;
 import com.neverbounce.api.model.JobsResultsRequest;
 import com.neverbounce.api.model.JobsResultsResponse;
 import com.neverbounce.api.model.JobsSearchRequest;
@@ -231,6 +233,27 @@ public class NeverbounceClientTest {
     JobsStartResponse jobsStartResponse = jobsStartRequest.execute();
 
     assertNotNull(jobsStartResponse);
+  }
+
+  @Test
+  public void testJobsParseRequest() {
+    when(
+        httpClient.postForObject(
+            eq(JobsParseRequest.PATH),
+            any(JobsParseRequest.class),
+            eq(JobsParseResponse.class))
+    ).thenReturn(
+        new JobsParseResponse()
+    );
+
+    JobsParseRequest jobsParseRequest = neverbounceClient
+        .prepareJobsParseRequest()
+        .withJobId(1)
+        .build();
+
+    JobsParseResponse jobsParseResponse = jobsParseRequest.execute();
+
+    assertNotNull(jobsParseResponse);
   }
 
 }

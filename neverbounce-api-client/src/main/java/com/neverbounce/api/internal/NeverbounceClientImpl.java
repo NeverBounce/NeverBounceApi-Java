@@ -6,6 +6,7 @@ import com.neverbounce.api.model.JobsCreateWithRemoteUrlRequest;
 import com.neverbounce.api.model.JobsCreateWithSuppliedJsonRequest;
 import com.neverbounce.api.model.JobsDeleteRequest;
 import com.neverbounce.api.model.JobsDeleteRequest.Builder;
+import com.neverbounce.api.model.JobsParseRequest;
 import com.neverbounce.api.model.JobsResultsRequest;
 import com.neverbounce.api.model.JobsSearchRequest;
 import com.neverbounce.api.model.JobsStartRequest;
@@ -69,6 +70,11 @@ public final class NeverbounceClientImpl implements NeverbounceClient {
   @Override
   public JobsStartRequest.Builder prepareJobsStartRequest() {
     return new JobsStartRequest.Builder(httpClient);
+  }
+
+  @Override
+  public JobsParseRequest.Builder prepareJobsParseRequest() {
+    return new JobsParseRequest.Builder(httpClient);
   }
 
 }
