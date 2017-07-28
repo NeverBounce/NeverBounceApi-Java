@@ -18,7 +18,7 @@ abstract class AbstractJobsRequest<R extends Response> extends AbstractRequest<R
     this.jobId = jobId;
   }
 
-  public abstract static class Builder<R extends AbstractJobsRequest>
+  public abstract static class Builder<R extends AbstractJobsRequest, B extends Builder<R, B>>
       extends AbstractRequestBuilder<R> {
 
     protected Long jobId;
@@ -27,9 +27,9 @@ abstract class AbstractJobsRequest<R extends Response> extends AbstractRequest<R
       super(httpClient);
     }
 
-    public Builder<R> withJobId(long jobId) {
+    public B withJobId(long jobId) {
       this.jobId = jobId;
-      return this;
+      return (B)this;
     }
 
     @Override

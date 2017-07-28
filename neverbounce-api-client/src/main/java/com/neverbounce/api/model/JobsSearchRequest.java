@@ -63,7 +63,7 @@ public class JobsSearchRequest extends AbstractJobsRequest<JobsSearchResponse> {
     return getHttpClient().getForObject(PATH, this, JobsSearchResponse.class);
   }
 
-  public static class Builder extends AbstractJobsRequest.Builder<JobsSearchRequest> {
+  public static class Builder extends AbstractJobsRequest.Builder<JobsSearchRequest, Builder> {
 
     private String filename;
     private Boolean completed;

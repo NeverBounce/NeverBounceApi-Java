@@ -29,7 +29,7 @@ public class JobsParseRequest extends AbstractJobsRequest<JobsParseResponse> {
     return getHttpClient().postForObject(PATH, this, JobsParseResponse.class);
   }
 
-  public static class Builder extends AbstractJobsRequest.Builder<JobsParseRequest> {
+  public static class Builder extends AbstractJobsRequest.Builder<JobsParseRequest, Builder> {
 
     private Boolean autoStart;
 

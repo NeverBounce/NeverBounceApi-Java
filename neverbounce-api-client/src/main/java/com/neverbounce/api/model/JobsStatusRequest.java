@@ -19,7 +19,7 @@ public class JobsStatusRequest extends AbstractJobsRequest<JobsStatusResponse> {
     return getHttpClient().getForObject(PATH, this, JobsStatusResponse.class);
   }
 
-  public static class Builder extends AbstractJobsRequest.Builder<JobsStatusRequest> {
+  public static class Builder extends AbstractJobsRequest.Builder<JobsStatusRequest, Builder> {
 
     public Builder(HttpClient httpClient) {
       super(httpClient);

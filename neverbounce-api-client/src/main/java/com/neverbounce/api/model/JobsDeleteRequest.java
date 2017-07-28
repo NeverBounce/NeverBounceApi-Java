@@ -1,6 +1,7 @@
 package com.neverbounce.api.model;
 
 import com.neverbounce.api.internal.HttpClient;
+import com.neverbounce.api.model.AbstractJobsRequest.Builder;
 
 /**
  * https://developers.neverbounce.com/v4.0/reference#jobs-delete
@@ -21,7 +22,7 @@ public class JobsDeleteRequest extends AbstractJobsRequest<JobsDeleteResponse> {
     return getHttpClient().postForObject(PATH, this, JobsDeleteResponse.class);
   }
 
-  public static class Builder extends AbstractJobsRequest.Builder<JobsDeleteRequest> {
+  public static class Builder extends AbstractJobsRequest.Builder<JobsDeleteRequest, Builder> {
 
     public Builder(HttpClient httpClient) {
       super(httpClient);

@@ -28,7 +28,7 @@ public class JobsStartRequest extends AbstractJobsRequest<JobsStartResponse> {
     return getHttpClient().postForObject(PATH, this, JobsStartResponse.class);
   }
 
-  public static class Builder extends AbstractJobsRequest.Builder<JobsStartRequest> {
+  public static class Builder extends AbstractJobsRequest.Builder<JobsStartRequest, Builder> {
 
     private Boolean runSample;
 

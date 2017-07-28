@@ -33,7 +33,7 @@ public class JobsResultsRequest extends AbstractJobsRequest<JobsResultsResponse>
     return getHttpClient().getForObject(PATH, this, JobsResultsResponse.class);
   }
 
-  public static class Builder extends AbstractJobsRequest.Builder<JobsResultsRequest> {
+  public static class Builder extends AbstractJobsRequest.Builder<JobsResultsRequest, Builder> {
 
     private Integer page;
     private Integer itemsPerPage;

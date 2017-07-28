@@ -249,6 +249,7 @@ public class NeverbounceClientTest {
     JobsParseRequest jobsParseRequest = neverbounceClient
         .prepareJobsParseRequest()
         .withJobId(1)
+        .withAutoStart(true)
         .build();
 
     JobsParseResponse jobsParseResponse = jobsParseRequest.execute();
