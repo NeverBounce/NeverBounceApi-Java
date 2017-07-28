@@ -8,6 +8,7 @@ import com.neverbounce.api.client.NeverbounceClientFactory;
 import com.neverbounce.api.model.AccountInfoRequest;
 import com.neverbounce.api.model.AccountInfoResponse;
 import com.neverbounce.api.model.JobsResultsResponse;
+import com.neverbounce.api.model.JobsSearchResponse;
 import com.neverbounce.api.model.JobsStatusResponse;
 import com.neverbounce.api.model.Response;
 import com.neverbounce.api.model.SingleCheckResponse;
@@ -52,7 +53,6 @@ public class Main {
     printJson(accountInfoResponse);
 
     // Single check
-
     SingleCheckResponse singleCheckResponse = neverbounceClient
             .prepareSingleCheckRequest()
             .withEmail("github@laszlocsontos.com")
@@ -81,6 +81,15 @@ public class Main {
         .execute();
 
     printJson(jobsStatusResponse);
+
+    // Job search
+    JobsSearchResponse jobsSearchResponse = neverbounceClient
+        .prepareJobsSearchRequest()
+        .withJobId(1)
+        .build()
+        .execute();
+
+    printJson(jobsSearchResponse);
   }
 
   private static void printJson(Response response) throws Exception {
