@@ -6,6 +6,7 @@ import com.neverbounce.api.model.JobsCreateWithSuppliedJsonRequest;
 import com.neverbounce.api.model.JobsDeleteRequest;
 import com.neverbounce.api.model.JobsResultsRequest;
 import com.neverbounce.api.model.JobsSearchRequest;
+import com.neverbounce.api.model.JobsStartRequest;
 import com.neverbounce.api.model.JobsStatusRequest;
 import com.neverbounce.api.model.SingleCheckRequest;
 
@@ -32,5 +33,7 @@ public interface NeverbounceClient {
   JobsCreateWithSuppliedJsonRequest.Builder prepareJobsCreateWithSuppliedJsonRequest();
 
   JobsDeleteRequest.Builder prepareJobsDeleteRequest();
+
+  JobsStartRequest.Builder prepareJobsStartRequest();
 
 }

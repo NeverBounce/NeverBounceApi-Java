@@ -8,6 +8,7 @@ import com.neverbounce.api.model.JobsDeleteRequest;
 import com.neverbounce.api.model.JobsDeleteRequest.Builder;
 import com.neverbounce.api.model.JobsResultsRequest;
 import com.neverbounce.api.model.JobsSearchRequest;
+import com.neverbounce.api.model.JobsStartRequest;
 import com.neverbounce.api.model.JobsStatusRequest;
 import com.neverbounce.api.model.SingleCheckRequest;
 
@@ -63,6 +64,11 @@ public final class NeverbounceClientImpl implements NeverbounceClient {
   @Override
   public JobsDeleteRequest.Builder prepareJobsDeleteRequest() {
     return new JobsDeleteRequest.Builder(httpClient);
+  }
+
+  @Override
+  public JobsStartRequest.Builder prepareJobsStartRequest() {
+    return new JobsStartRequest.Builder(httpClient);
   }
 
 }

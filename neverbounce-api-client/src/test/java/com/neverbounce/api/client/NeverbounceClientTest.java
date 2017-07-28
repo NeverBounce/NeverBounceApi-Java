@@ -18,6 +18,8 @@ import com.neverbounce.api.model.JobsResultsRequest;
 import com.neverbounce.api.model.JobsResultsResponse;
 import com.neverbounce.api.model.JobsSearchRequest;
 import com.neverbounce.api.model.JobsSearchResponse;
+import com.neverbounce.api.model.JobsStartRequest;
+import com.neverbounce.api.model.JobsStartResponse;
 import com.neverbounce.api.model.JobsStatusRequest;
 import com.neverbounce.api.model.JobsStatusResponse;
 import com.neverbounce.api.model.SingleCheckRequest;
@@ -208,6 +210,27 @@ public class NeverbounceClientTest {
     JobsDeleteResponse jobsDeleteResponse = jobsDeleteRequest.execute();
 
     assertNotNull(jobsDeleteResponse);
+  }
+
+  @Test
+  public void testJobsStartRequest() {
+    when(
+        httpClient.postForObject(
+            eq(JobsStartRequest.PATH),
+            any(JobsStartRequest.class),
+            eq(JobsStartResponse.class))
+    ).thenReturn(
+        new JobsStartResponse()
+    );
+
+    JobsStartRequest jobsStartRequest = neverbounceClient
+        .prepareJobsStartRequest()
+        .withJobId(1)
+        .build();
+
+    JobsStartResponse jobsStartResponse = jobsStartRequest.execute();
+
+    assertNotNull(jobsStartResponse);
   }
 
 }
