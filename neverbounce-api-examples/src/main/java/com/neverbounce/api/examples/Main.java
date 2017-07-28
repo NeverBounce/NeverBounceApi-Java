@@ -7,6 +7,7 @@ import com.neverbounce.api.client.NeverbounceClientFactory;
 import com.neverbounce.api.model.AccountInfoRequest;
 import com.neverbounce.api.model.AccountInfoResponse;
 import com.neverbounce.api.model.JobsCreateResponse;
+import com.neverbounce.api.model.JobsDeleteResponse;
 import com.neverbounce.api.model.JobsResultsResponse;
 import com.neverbounce.api.model.JobsSearchResponse;
 import com.neverbounce.api.model.JobsStatusResponse;
@@ -101,6 +102,15 @@ public class Main {
         .execute();
 
     printJson(jobsSearchResponse);
+
+    // Job delete
+    JobsDeleteResponse jobsDeleteResponse = neverbounceClient
+        .prepareJobsDeleteRequest()
+        .withJobId(jobId)
+        .build()
+        .execute();
+
+    printJson(jobsDeleteResponse);
   }
 
 }
