@@ -36,6 +36,11 @@ public class JobsCreateWithSuppliedJsonRequest extends JobsCreateRequest<List<St
     }
 
     @Override
+    public JobsCreateWithSuppliedJsonRequest build() {
+      return super.build();
+    }
+
+    @Override
     protected JobsCreateWithSuppliedJsonRequest doBuild() {
       return new JobsCreateWithSuppliedJsonRequest(
           httpClient,

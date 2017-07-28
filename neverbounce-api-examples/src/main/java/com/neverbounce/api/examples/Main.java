@@ -1,20 +1,16 @@
 package com.neverbounce.api.examples;
 
-import static com.neverbounce.api.internal.HttpClient.JSON_FACTORY;
 import static com.neverbounce.api.internal.JsonUtils.printJson;
 
-import com.google.api.client.json.JsonGenerator;
 import com.neverbounce.api.client.NeverbounceClient;
 import com.neverbounce.api.client.NeverbounceClientFactory;
 import com.neverbounce.api.model.AccountInfoRequest;
 import com.neverbounce.api.model.AccountInfoResponse;
+import com.neverbounce.api.model.JobsCreateResponse;
 import com.neverbounce.api.model.JobsResultsResponse;
 import com.neverbounce.api.model.JobsSearchResponse;
 import com.neverbounce.api.model.JobsStatusResponse;
-import com.neverbounce.api.model.Response;
 import com.neverbounce.api.model.SingleCheckResponse;
-import java.io.PrintWriter;
-import java.io.Writer;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -65,10 +61,24 @@ public class Main {
 
     printJson(singleCheckResponse);
 
+    // Job creation
+    JobsCreateResponse jobsCreateResponse = neverbounceClient
+        .prepareJobsCreateWithSuppliedJsonRequest()
+        .addInput("github@laszlocsontos.com", "Laszlo Csontos")
+        .withAutoParse(true)
+        .withAutoStart(true)
+        .withFilename("test.csv")
+        .build()
+        .execute();
+
+    printJson(jobsCreateResponse);
+
+    long jobId = 280319; //jobsCreateResponse.getJobId();
+
     // Job results
     JobsResultsResponse jobsResultsResponse = neverbounceClient
         .prepareJobsResultsRequest()
-        .withJobId(1)
+        .withJobId(jobId)
         .build()
         .execute();
 
@@ -77,7 +87,7 @@ public class Main {
     // Job status
     JobsStatusResponse jobsStatusResponse = neverbounceClient
         .prepareJobsStatusRequest()
-        .withJobId(1)
+        .withJobId(jobId)
         .build()
         .execute();
 
@@ -86,7 +96,7 @@ public class Main {
     // Job search
     JobsSearchResponse jobsSearchResponse = neverbounceClient
         .prepareJobsSearchRequest()
-        .withJobId(1)
+        .withJobId(jobId)
         .build()
         .execute();
 

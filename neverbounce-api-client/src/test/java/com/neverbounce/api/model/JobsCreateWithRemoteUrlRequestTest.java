@@ -13,13 +13,12 @@ public class JobsCreateWithRemoteUrlRequestTest {
   @Test
   public void testBuild() throws Exception {
     JobsCreateWithRemoteUrlRequest jobsCreateWithRemoteUrlRequest =
-        (JobsCreateWithRemoteUrlRequest)
-            new JobsCreateWithRemoteUrlRequest.Builder(null)
-                .withInput("test.csv")
-                .withAutoParse(true)
-                .withAutoStart(true)
-                .withFilename("test.csv")
-                .build();
+          new JobsCreateWithRemoteUrlRequest.Builder(null)
+              .withInput("test.csv")
+              .withAutoParse(true)
+              .withAutoStart(true)
+              .withFilename("test.csv")
+              .build();
 
     assertNotNull(jobsCreateWithRemoteUrlRequest);
 

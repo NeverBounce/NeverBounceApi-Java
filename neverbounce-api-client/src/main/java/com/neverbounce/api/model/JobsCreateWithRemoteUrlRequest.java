@@ -33,6 +33,11 @@ public class JobsCreateWithRemoteUrlRequest extends JobsCreateRequest<String> {
     }
 
     @Override
+    public JobsCreateWithRemoteUrlRequest build() {
+      return super.build();
+    }
+
+    @Override
     protected JobsCreateWithRemoteUrlRequest doBuild() {
       return new JobsCreateWithRemoteUrlRequest(
           httpClient,

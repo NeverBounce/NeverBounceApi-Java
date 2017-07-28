@@ -66,22 +66,22 @@ public abstract class JobsCreateRequest<T> extends AbstractRequest<JobsCreateRes
       this.inputLocation = inputLocation;
     }
 
-    public Builder withAutoParse(boolean autoParse) {
+    public Builder<T, R> withAutoParse(boolean autoParse) {
       this.autoParse = autoParse;
       return this;
     }
 
-    public Builder withAutoStart(boolean autoStart) {
+    public Builder<T, R> withAutoStart(boolean autoStart) {
       this.autoStart = autoStart;
       return this;
     }
 
-    public Builder withRunSample(Boolean runSample) {
+    public Builder<T, R> withRunSample(Boolean runSample) {
       this.runSample = runSample;
       return this;
     }
 
-    public Builder withFilename(String filename) {
+    public Builder<T, R> withFilename(String filename) {
       this.filename = filename;
       return this;
     }
