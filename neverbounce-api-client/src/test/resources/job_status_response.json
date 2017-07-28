@@ -1,0 +1,22 @@
+{
+  "status": "success",
+  "id": 185137,
+  "filename": "NBUser_1054_58f2b406006f1",
+  "created": "2017-04-15 20:00:06",
+  "started": "2017-04-15 20:00:21",
+  "finished": "2017-04-15 21:52:46",
+  "total_records": 24606,
+  "total_billable": 24606,
+  "total_processed": 24606,
+  "total_valid": 18227,
+  "total_invalid": 1305,
+  "total_catchall": 4342,
+  "total_disposable": 16,
+  "total_unknown": 716,
+  "total_duplicates": 0,
+  "total_bad_syntax": 0,
+  "bounce_estimate": 5.3035844915874,
+  "percent_complete": 100,
+  "job_status": "complete",
+  "execution_time": 2535
+}

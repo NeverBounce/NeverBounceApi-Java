@@ -3,6 +3,7 @@ package com.neverbounce.api.internal;
 import com.neverbounce.api.client.NeverbounceClient;
 import com.neverbounce.api.model.AccountInfoRequest;
 import com.neverbounce.api.model.JobsResultsRequest;
+import com.neverbounce.api.model.JobsStatusRequest;
 import com.neverbounce.api.model.SingleCheckRequest;
 
 /**
@@ -32,6 +33,11 @@ public final class NeverbounceClientImpl implements NeverbounceClient {
   @Override
   public JobsResultsRequest.Builder prepareJobsResultsRequest() {
     return new JobsResultsRequest.Builder(httpClient);
+  }
+
+  @Override
+  public JobsStatusRequest.Builder prepareJobsStatusRequest() {
+    return new JobsStatusRequest.Builder(httpClient);
   }
 
 }

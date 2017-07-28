@@ -11,6 +11,8 @@ import com.neverbounce.api.model.AccountInfoRequest;
 import com.neverbounce.api.model.AccountInfoResponse;
 import com.neverbounce.api.model.JobsResultsRequest;
 import com.neverbounce.api.model.JobsResultsResponse;
+import com.neverbounce.api.model.JobsStatusRequest;
+import com.neverbounce.api.model.JobsStatusResponse;
 import com.neverbounce.api.model.SingleCheckRequest;
 import com.neverbounce.api.model.SingleCheckResponse;
 import org.junit.Before;
@@ -88,6 +90,27 @@ public class NeverbounceClientTest {
     JobsResultsResponse jobsResultsResponse = jobsResultsRequest.execute();
 
     assertNotNull(jobsResultsResponse);
+  }
+
+  @Test
+  public void testJobsStatusRequest() {
+    when(
+        httpClient.getForObject(
+            eq(JobsStatusRequest.PATH),
+            any(JobsStatusRequest.class),
+            eq(JobsStatusResponse.class))
+    ).thenReturn(
+        new JobsStatusResponse()
+    );
+
+    JobsStatusRequest jobsStatusRequest = neverbounceClient
+        .prepareJobsStatusRequest()
+        .withJobId(1)
+        .build();
+
+    JobsStatusResponse jobsStatusResponse = jobsStatusRequest.execute();
+
+    assertNotNull(jobsStatusResponse);
   }
 
 }
