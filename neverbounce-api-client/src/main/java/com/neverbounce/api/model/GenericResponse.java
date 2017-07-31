@@ -6,7 +6,7 @@ import com.google.api.client.util.Key;
  * @author Laszlo Csontos
  * @since 4.0.0
  */
-class BaseResponse implements Response {
+class GenericResponse implements Response {
 
   @Key("execution_time")
   private long executionTime;

@@ -1,14 +1,19 @@
 package com.neverbounce.api.examples;
 
-import static com.neverbounce.api.internal.HttpClient.JSON_FACTORY;
+import static com.neverbounce.api.internal.JsonUtils.printJson;
 
-import com.google.api.client.json.JsonGenerator;
 import com.neverbounce.api.client.NeverbounceClient;
 import com.neverbounce.api.client.NeverbounceClientFactory;
 import com.neverbounce.api.model.AccountInfoRequest;
 import com.neverbounce.api.model.AccountInfoResponse;
-import java.io.PrintWriter;
-import java.io.Writer;
+import com.neverbounce.api.model.JobsCreateResponse;
+import com.neverbounce.api.model.JobsDeleteResponse;
+import com.neverbounce.api.model.JobsParseResponse;
+import com.neverbounce.api.model.JobsResultsResponse;
+import com.neverbounce.api.model.JobsSearchResponse;
+import com.neverbounce.api.model.JobsStartResponse;
+import com.neverbounce.api.model.JobsStatusResponse;
+import com.neverbounce.api.model.SingleCheckResponse;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -42,14 +47,91 @@ public class Main {
     NeverbounceClient neverbounceClient =
         NeverbounceClientFactory.create(commandLine.getOptionValue("a"));
 
+    // Account info
     AccountInfoRequest accountInfoRequest = neverbounceClient.createAccountInfoRequest();
     AccountInfoResponse accountInfoResponse = accountInfoRequest.execute();
+    printJson(accountInfoResponse);
 
-    Writer writer = new PrintWriter(System.out);
-    JsonGenerator jsonGenerator = JSON_FACTORY.createJsonGenerator(writer);
-    jsonGenerator.serialize(accountInfoResponse);
+    // Single check
+    SingleCheckResponse singleCheckResponse = neverbounceClient
+            .prepareSingleCheckRequest()
+            .withEmail("github@laszlocsontos.com")
+            .withAddressInfo(true)
+            .withCreditsInfo(true)
+            .withTimeout(300)
+            .build()
+            .execute();
 
-    writer.close();
+    printJson(singleCheckResponse);
+
+    // Job creation
+    JobsCreateResponse jobsCreateResponse = neverbounceClient
+        .prepareJobsCreateWithSuppliedJsonRequest()
+        .addInput("github@laszlocsontos.com", "Laszlo Csontos")
+        .withAutoParse(true)
+        .withAutoStart(true)
+        .withFilename("test.csv")
+        .build()
+        .execute();
+
+    printJson(jobsCreateResponse);
+
+    long jobId = jobsCreateResponse.getJobId();
+
+    // Job results
+    JobsResultsResponse jobsResultsResponse = neverbounceClient
+        .prepareJobsResultsRequest()
+        .withJobId(jobId)
+        .build()
+        .execute();
+
+    printJson(jobsResultsResponse);
+
+    // Job status
+    JobsStatusResponse jobsStatusResponse = neverbounceClient
+        .prepareJobsStatusRequest()
+        .withJobId(jobId)
+        .build()
+        .execute();
+
+    printJson(jobsStatusResponse);
+
+    // Job search
+    JobsSearchResponse jobsSearchResponse = neverbounceClient
+        .prepareJobsSearchRequest()
+        .withJobId(jobId)
+        .build()
+        .execute();
+
+    printJson(jobsSearchResponse);
+
+    // Job start
+    JobsStartResponse jobsStartResponse = neverbounceClient
+        .prepareJobsStartRequest()
+        .withJobId(jobId)
+        .build()
+        .execute();
+
+    printJson(jobsStartResponse);
+
+    // Job parse
+    JobsParseResponse jobsParseResponse = neverbounceClient
+        .prepareJobsParseRequest()
+        .withJobId(jobId)
+        .withAutoStart(true)
+        .build()
+        .execute();
+
+    printJson(jobsParseResponse);
+
+    // Job delete
+    JobsDeleteResponse jobsDeleteResponse = neverbounceClient
+        .prepareJobsDeleteRequest()
+        .withJobId(jobId)
+        .build()
+        .execute();
+
+    printJson(jobsDeleteResponse);
   }
 
 }

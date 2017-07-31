@@ -1,0 +1,99 @@
+{
+  "status": "success",
+  "total_results": 3,
+  "total_pages": 1,
+  "query": {
+    "job_id": 251319,
+    "valids": 1,
+    "invalids": 1,
+    "disposables": 1,
+    "catchalls": 1,
+    "unknowns": 1,
+    "page": 0,
+    "items_per_page": 10
+  },
+  "results": [
+    {
+      "data": {
+        "email": "email",
+        "id": "id",
+        "name": "name"
+      },
+      "verification": {
+        "status": "success",
+        "result": "invalid",
+        "flags": [],
+        "suggested_correction": "",
+        "address_info": {
+          "original_email": "email",
+          "normalized_email": "",
+          "addr": "",
+          "alias": "",
+          "host": "",
+          "fqdn": "",
+          "domain": "",
+          "subdomain": "",
+          "tld": ""
+        }
+      }
+    },
+    {
+      "data": {
+        "email": "support@neverbounce.com",
+        "id": "12345",
+        "name": "Fred McValid"
+      },
+      "verification": {
+        "status": "success",
+        "result": "valid",
+        "flags": [
+          "smtp_connectable",
+          "has_dns",
+          "has_dns_mx",
+          "role_account"
+        ],
+        "suggested_correction": "",
+        "address_info": {
+          "original_email": "support@neverbounce.com",
+          "normalized_email": "support@neverbounce.com",
+          "addr": "support",
+          "alias": "",
+          "host": "neverbounce.com",
+          "fqdn": "neverbounce.com",
+          "domain": "neverbounce",
+          "subdomain": "",
+          "tld": "com"
+        }
+      }
+    },
+    {
+      "data": {
+        "email": "invalid@neverbounce.com",
+        "id": "12346",
+        "name": "Bob McInvalid"
+      },
+      "verification": {
+        "status": "success",
+        "result": "invalid",
+        "flags": [
+          "smtp_connectable",
+          "has_dns",
+          "has_dns_mx"
+        ],
+        "suggested_correction": "",
+        "address_info": {
+          "original_email": "invalid@neverbounce.com",
+          "normalized_email": "invalid@neverbounce.com",
+          "addr": "invalid",
+          "alias": "",
+          "host": "neverbounce.com",
+          "fqdn": "neverbounce.com",
+          "domain": "neverbounce",
+          "subdomain": "",
+          "tld": "com"
+        }
+      }
+    }
+  ],
+  "execution_time": 55
+}

@@ -1,0 +1,32 @@
+{
+  "status": "success",
+  "total_results": 1160,
+  "total_pages": 117,
+  "query": {
+    "page": 1,
+    "items_per_page": 10
+  },
+  "results": [
+    {
+      "id": 217711,
+      "status": "complete",
+      "filename": "Created from Array.csv",
+      "created": "2017-05-23 12:58:28",
+      "started": "2017-05-23 12:58:35",
+      "finished": "2017-05-23 12:58:36",
+      "total_records": 4,
+      "total_billable": 3,
+      "total_processed": 4,
+      "total_valid": 2,
+      "total_invalid": 2,
+      "total_catchall": 0,
+      "total_disposable": 0,
+      "total_unknown": 0,
+      "total_duplicates": 0,
+      "total_bad_syntax": 1,
+      "bounce_estimate": 25,
+      "percent_complete": 100
+    }
+  ],
+  "execution_time": 1322
+}
