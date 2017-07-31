@@ -7,6 +7,7 @@ import java.util.Date;
 /**
  * @author Laszlo Csontos
  * @since 4.0.0
+ * @see <a href="https://developers.neverbounce.com/v4.0/reference#jobs-status">Jobs Status</a>
  */
 public class JobsStatusResponse extends GenericResponse {
 

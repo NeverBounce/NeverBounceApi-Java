@@ -6,6 +6,11 @@ package com.neverbounce.api.model;
  */
 public interface Request<R extends Response> {
 
+  /**
+   * Executes the current request against Neverbounce's API.
+   *
+   * @return a response object
+   */
   R execute();
 
 }

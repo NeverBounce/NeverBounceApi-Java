@@ -5,10 +5,12 @@ import com.google.api.client.util.Preconditions;
 import com.neverbounce.api.internal.HttpClient;
 
 /**
- * https://developers.neverbounce.com/v4.0/reference#single-check
+ * Single verification allows you verify individual emails and gather additional information
+ * pertaining to the email.
  *
  * @author Laszlo Csontos
  * @since 4.0.0
+ * @see <a href="https://developers.neverbounce.com/v4.0/reference#single-check">Single Check</a>
  */
 public class SingleCheckRequest extends AbstractRequest<SingleCheckResponse> {
 

@@ -8,10 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * https://developers.neverbounce.com/v4.0/reference#jobs-create
+ * Supplying the data directly gives you the option to dynamically create email lists on the fly
+ * rather than having to write to a file. input will accept an array of objects or arrays that
+ * contain the email, as well as any ancillary data you wish to associate with the email
+ * (e.g. user IDs, names, contact information).
  *
  * @author Laszlo Csontos
  * @since 4.0.0
+ * @see <a href="https://developers.neverbounce.com/v4.0/reference#jobs-create">Jobs Create</a>
  */
 public class JobsCreateWithSuppliedJsonRequest extends JobsCreateRequest<List<String[]>> {
 

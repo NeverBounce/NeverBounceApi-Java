@@ -6,10 +6,14 @@ import static com.neverbounce.api.model.InputLocation.REMOTE_URL;
 import com.neverbounce.api.internal.HttpClient;
 
 /**
- * https://developers.neverbounce.com/v4.0/reference#jobs-create
+ * Using a remote URL allows you to host the file and provide us with a direct link to it. The file
+ * should be a list of emails separated by line breaks or a standard CSV file. We support most
+ * common file transfer protocols and they're authentication mechanisms. When using a URL that
+ * requires authentication be sure to pass the username and password in the URI string.
  *
  * @author Laszlo Csontos
  * @since 4.0.0
+ * @see <a href="https://developers.neverbounce.com/v4.0/reference#jobs-create">Jobs Create</a>
  */
 public class JobsCreateWithRemoteUrlRequest extends JobsCreateRequest<String> {
 

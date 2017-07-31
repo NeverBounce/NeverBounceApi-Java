@@ -5,6 +5,7 @@ import com.google.api.client.util.Key;
 /**
  * @author Laszlo Csontos
  * @since 4.0.0
+ * @see <a href="https://developers.neverbounce.com/v4.0/reference#account-info">Account</a>
  */
 public class AccountInfoResponse extends GenericResponse {
 

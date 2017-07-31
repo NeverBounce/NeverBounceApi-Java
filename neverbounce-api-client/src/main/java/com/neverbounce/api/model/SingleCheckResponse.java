@@ -4,10 +4,9 @@ import com.google.api.client.util.Key;
 import java.util.Set;
 
 /**
- * https://developers.neverbounce.com/v4.0/reference#single-check
- *
  * @author Laszlo Csontos
  * @since 4.0.0
+ * @see <a href="https://developers.neverbounce.com/v4.0/reference#single-check">Single Check</a>
  */
 public class SingleCheckResponse extends GenericResponse {
 

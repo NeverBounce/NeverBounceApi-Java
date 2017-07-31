@@ -5,10 +5,12 @@ import com.google.api.client.util.Preconditions;
 import com.neverbounce.api.internal.HttpClient;
 
 /**
- * https://developers.neverbounce.com/v4.0/reference#jobs-create
+ * The jobs create endpoint allows you create verify multiple emails together, the same way you
+ * would verify lists in the dashboard.
  *
  * @author Laszlo Csontos
  * @since 4.0.0
+ * @see <a href="https://developers.neverbounce.com/v4.0/reference#jobs-create">Jobs Create</a>
  */
 public abstract class JobsCreateRequest<T> extends AbstractRequest<JobsCreateResponse> {
 
