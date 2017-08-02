@@ -17,7 +17,8 @@
       "data": {
         "email": "invalid@neverbounce.com",
         "id": "12346",
-        "name": "Bob McInvalid"
+        "name": "Bob McInvalid",
+        "customerId": "1234"
       },
       "verification": {
         "result": "invalid",

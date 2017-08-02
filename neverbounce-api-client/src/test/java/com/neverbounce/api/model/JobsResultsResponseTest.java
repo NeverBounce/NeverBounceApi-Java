@@ -59,6 +59,7 @@ public class JobsResultsResponseTest extends AbstractResponseTest<JobsResultsRes
     assertEquals("invalid@neverbounce.com", data.getEmail());
     assertEquals("12346", data.getId());
     assertEquals("Bob McInvalid", data.getName());
+    assertEquals("1234", data.get("customerId"));
 
     // Verification
     SingleCheckResponse verification = result.getVerification();
