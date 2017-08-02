@@ -26,7 +26,7 @@ public class EmailData extends GenericData {
   }
 
   /**
-   * Creates an {@code EmailData} with common fields ({@code id}, {@code email}, {@name})
+   * Creates an {@code EmailData} with common fields ({@code id}, {@code email}, {@code name})
    * initialized.
    *
    * @param id ID
