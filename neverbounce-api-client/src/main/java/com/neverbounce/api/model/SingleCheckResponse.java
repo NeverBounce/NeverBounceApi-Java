@@ -97,6 +97,9 @@ public class SingleCheckResponse extends GenericResponse {
     private String fqdn;
 
     @Key
+    private String domain;
+
+    @Key
     private String subdomain;
 
     @Key
@@ -148,6 +151,14 @@ public class SingleCheckResponse extends GenericResponse {
 
     public void setFqdn(String fqdn) {
       this.fqdn = fqdn;
+    }
+
+    public String getDomain() {
+      return domain;
+    }
+
+    public void setDomain(String domain) {
+      this.domain = domain;
     }
 
     public String getSubdomain() {
