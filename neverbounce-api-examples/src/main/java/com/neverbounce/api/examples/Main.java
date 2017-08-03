@@ -102,15 +102,16 @@ public class Main {
     // Job start
 
     while (true) {
-      JobsStartResponse jobsStartResponse = null;
-
       // Workaround for "This job is not in a state which can be ran"
       try {
-        jobsStartResponse = neverbounceClient
+        JobsStartResponse jobsStartResponse = neverbounceClient
             .prepareJobsStartRequest()
             .withJobId(jobId)
             .build()
             .execute();
+
+        printJson("JobsStartResponse", jobsStartResponse);
+        break;
       } catch (NeverbounceApiException nae) {
         System.out.println("JobsStartResponse: " + nae.getMessage());
 
@@ -120,27 +121,22 @@ public class Main {
         } catch (InterruptedException e) {
           e.printStackTrace();
         }
-
-        // Try it again
-        continue;
       }
-
-      printJson("JobsStartResponse", jobsStartResponse);
-      break;
     }
 
     // Job results
 
     while (true) {
-      JobsResultsResponse jobsResultsResponse = null;
-
       // Workaround for "Results are not currently available for this job"
       try {
-        jobsResultsResponse = neverbounceClient
+        JobsResultsResponse jobsResultsResponse = neverbounceClient
             .prepareJobsResultsRequest()
             .withJobId(jobId)
             .build()
             .execute();
+
+        printJson("JobsResultsResponse", jobsResultsResponse);
+        break;
       } catch (NeverbounceApiException nae) {
         System.out.println("JobsResultsResponse: " + nae.getMessage());
 
@@ -150,13 +146,7 @@ public class Main {
         } catch (InterruptedException e) {
           e.printStackTrace();
         }
-
-        // Try it again
-        continue;
       }
-
-      printJson("JobsResultsResponse", jobsResultsResponse);
-      break;
     }
 
     // Job search
