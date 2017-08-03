@@ -15,65 +15,12 @@
   "results": [
     {
       "data": {
-        "email": "email",
-        "id": "id",
-        "name": "name"
-      },
-      "verification": {
-        "status": "success",
-        "result": "invalid",
-        "flags": [],
-        "suggested_correction": "",
-        "address_info": {
-          "original_email": "email",
-          "normalized_email": "",
-          "addr": "",
-          "alias": "",
-          "host": "",
-          "fqdn": "",
-          "domain": "",
-          "subdomain": "",
-          "tld": ""
-        }
-      }
-    },
-    {
-      "data": {
-        "email": "support@neverbounce.com",
-        "id": "12345",
-        "name": "Fred McValid"
-      },
-      "verification": {
-        "status": "success",
-        "result": "valid",
-        "flags": [
-          "smtp_connectable",
-          "has_dns",
-          "has_dns_mx",
-          "role_account"
-        ],
-        "suggested_correction": "",
-        "address_info": {
-          "original_email": "support@neverbounce.com",
-          "normalized_email": "support@neverbounce.com",
-          "addr": "support",
-          "alias": "",
-          "host": "neverbounce.com",
-          "fqdn": "neverbounce.com",
-          "domain": "neverbounce",
-          "subdomain": "",
-          "tld": "com"
-        }
-      }
-    },
-    {
-      "data": {
         "email": "invalid@neverbounce.com",
         "id": "12346",
-        "name": "Bob McInvalid"
+        "name": "Bob McInvalid",
+        "customerId": "1234"
       },
       "verification": {
-        "status": "success",
         "result": "invalid",
         "flags": [
           "smtp_connectable",

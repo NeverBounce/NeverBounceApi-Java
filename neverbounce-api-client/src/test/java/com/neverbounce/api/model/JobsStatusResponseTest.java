@@ -23,21 +23,21 @@ public class JobsStatusResponseTest extends AbstractResponseTest<JobsStatusRespo
   @Override
   protected void assertResponse(JobsStatusResponse response) {
     assertNotNull(response);
-    assertEquals(185137, response.getId());
-    assertEquals("NBUser_1054_58f2b406006f1", response.getFilename());
-    assertEquals(new Date(117, 3, 15, 20, 0, 6), response.getCreated());
-    assertEquals(new Date(117, 3, 15, 20, 0, 21), response.getStarted());
-    assertEquals(new Date(117, 3, 15, 21, 52, 46), response.getFinished());
-    assertEquals(24606, response.getTotalRecords());
-    assertEquals(24606, response.getTotalBillable());
-    assertEquals(24606, response.getTotalProcessed());
-    assertEquals(18227, response.getTotalValid());
-    assertEquals(1305, response.getTotalInvalid());
-    assertEquals(4342, response.getTotalCatchall());
-    assertEquals(16, response.getTotalDisposable());
-    assertEquals(716, response.getTotalUnknown());
-    assertEquals(0, response.getTotalDuplicates());
-    assertEquals(0, response.getTotalBadSyntax());
+    assertEquals(277461, response.getId());
+    assertEquals("Created from Array.csv", response.getFilename());
+    assertEquals(new Date(117, 6, 25, 14, 52, 27), response.getCreatedAt());
+    assertEquals(new Date(117, 6, 25, 14, 52, 40), response.getStartedAt());
+    assertEquals(new Date(117, 6, 25, 14, 53, 06), response.getFinishedAt());
+    assertEquals(2, response.getTotal().getRecords());
+    assertEquals(2, response.getTotal().getBillable());
+    assertEquals(2, response.getTotal().getProcessed());
+    assertEquals(0, response.getTotal().getValid());
+    assertEquals(2, response.getTotal().getInvalid());
+    assertEquals(0, response.getTotal().getCatchall());
+    assertEquals(0, response.getTotal().getDisposable());
+    assertEquals(0, response.getTotal().getUnknown());
+    assertEquals(0, response.getTotal().getDuplicates());
+    assertEquals(0, response.getTotal().getBadSyntax());
     assertEquals(100, response.getPercentComplete());
     assertEquals(COMPLETE, response.getJobStatus());
   }

@@ -14,7 +14,7 @@ public class JobsCreateWithSuppliedJsonRequestTest {
   public void testBuild() throws Exception {
     JobsCreateWithSuppliedJsonRequest jobsCreateWithSuppliedJsonRequest =
       new JobsCreateWithSuppliedJsonRequest.Builder(null)
-          .addInput("github@laszlocsontos.com", "Laszlo Csontos")
+          .addInput("1", "github@laszlocsontos.com", "Laszlo Csontos")
           .withAutoParse(true)
           .withAutoStart(true)
           .withFilename("test.csv")

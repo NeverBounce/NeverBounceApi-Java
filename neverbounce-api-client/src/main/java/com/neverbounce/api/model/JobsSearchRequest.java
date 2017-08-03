@@ -9,6 +9,7 @@ import com.neverbounce.api.internal.HttpClient;
 /**
  * @author Laszlo Csontos
  * @since 4.0.0
+ * @see <a href="https://developers.neverbounce.com/v4.0/reference#jobs-search">Jobs Search</a>
  */
 public class JobsSearchRequest extends AbstractJobsRequest<JobsSearchResponse> {
 

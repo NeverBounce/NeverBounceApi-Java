@@ -35,7 +35,7 @@ public class HttpClientTest {
         httpClient.getForObject("account/info", AccountInfoResponse.class);
 
     assertNotNull(accountInfoResponse);
-    assertEquals("default", accountInfoResponse.getBillingType());
+    assertEquals(Status.SUCCESS, accountInfoResponse.getStatus());
   }
 
   @Test

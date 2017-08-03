@@ -7,10 +7,12 @@ import com.google.api.client.util.Preconditions;
 import com.neverbounce.api.internal.HttpClient;
 
 /**
- * https://developers.neverbounce.com/v4.0/reference#jobs-parse
+ * This endpoint allows you to parse a job created with {@code auto_parse} disabled. You cannot
+ * reparse a list once it's been parsed.
  *
  * @author Laszlo Csontos
  * @since 4.0.0
+ * @see <a href="https://developers.neverbounce.com/v4.0/reference#jobs-parse">Jobs Parse</a>
  */
 public class JobsParseRequest extends AbstractJobsRequest<JobsParseResponse> {
 

@@ -22,17 +22,16 @@ public class AccountInfoResponseTest extends AbstractResponseTest<AccountInfoRes
   @Override
   protected void assertResponse(AccountInfoResponse response) {
     assertNotNull(response);
-    assertEquals("default", response.getBillingType());
-    assertEquals(53479, response.getCredits());
-    assertEquals(0, response.getFreeApiCredits());
-    assertEquals(376, response.getMonthlyApiUsage());
-    assertEquals(0, response.getMonthlyDashboardUsage());
-    assertEquals(286, response.getJobsCompleted());
-    assertEquals(0, response.getJobsUnderReview());
-    assertEquals(0, response.getJobsQueued());
-    assertEquals(0, response.getJobsProcessing());
+    assertEquals(0, response.getCreditsInfo().getPaidCreditsUsed());
+    assertEquals(0, response.getCreditsInfo().getFreeCreditsUsed());
+    assertEquals(9950791, response.getCreditsInfo().getPaidCreditsRemaining());
+    assertEquals(0, response.getCreditsInfo().getFreeCreditsRemaining());
+    assertEquals(409, response.getJobCounts().getCompleted());
+    assertEquals(0, response.getJobCounts().getUnderReview());
+    assertEquals(0, response.getJobCounts().getQueued());
+    assertEquals(0, response.getJobCounts().getProcessing());
     assertEquals(SUCCESS, response.getStatus());
-    assertEquals(1419, response.getExecutionTime());
+    assertEquals(896, response.getExecutionTime());
   }
 
 }

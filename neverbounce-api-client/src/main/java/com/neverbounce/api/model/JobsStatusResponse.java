@@ -7,6 +7,7 @@ import java.util.Date;
 /**
  * @author Laszlo Csontos
  * @since 4.0.0
+ * @see <a href="https://developers.neverbounce.com/v4.0/reference#jobs-status">Jobs Status</a>
  */
 public class JobsStatusResponse extends GenericResponse {
 
@@ -16,44 +17,17 @@ public class JobsStatusResponse extends GenericResponse {
   @Key
   private String filename;
 
-  @Key("created")
-  private String createdAsString;
+  @Key("created_at")
+  private String createdAtAsString;
 
-  @Key("started")
-  private String startedAsString;
+  @Key("started_at")
+  private String startedAtAsString;
 
-  @Key("finished")
-  private String finishedAsString;
+  @Key("finished_at")
+  private String finishedAtAsString;
 
-  @Key("total_records")
-  private int totalRecords;
-
-  @Key("total_billable")
-  private int totalBillable;
-
-  @Key("total_processed")
-  private int totalProcessed;
-
-  @Key("total_valid")
-  private int totalValid;
-
-  @Key("total_invalid")
-  private int totalInvalid;
-
-  @Key("total_catchall")
-  private int totalCatchall;
-
-  @Key("total_disposable")
-  private int totalDisposable;
-
-  @Key("total_unknown")
-  private int totalUnknown;
-
-  @Key("total_duplicates")
-  private int totalDuplicates;
-
-  @Key("total_bad_syntax")
-  private int totalBadSyntax;
+  @Key
+  private Total total;
 
   @Key("bounce_estimate")
   private double bounceEstimate;
@@ -80,112 +54,40 @@ public class JobsStatusResponse extends GenericResponse {
     this.filename = filename;
   }
 
-  public Date getCreated() {
-    return DateUtils.toDate(createdAsString);
+  public Date getCreatedAt() {
+    return DateUtils.toDate(createdAtAsString);
   }
 
-  public String getCreatedAsString() {
-    return createdAsString;
+  public String getCreatedAtAsString() {
+    return createdAtAsString;
   }
 
-  public void setCreatedAsString(String createdAsString) {
-    this.createdAsString = createdAsString;
+  public void setCreatedAtAsString(String createdAtAsString) {
+    this.createdAtAsString = createdAtAsString;
   }
 
-  public Date getStarted() {
-    return DateUtils.toDate(startedAsString);
+  public Date getStartedAt() {
+    return DateUtils.toDate(startedAtAsString);
   }
 
-  public String getStartedAsString() {
-    return startedAsString;
+  public String getStartedAtAsString() {
+    return startedAtAsString;
   }
 
-  public Date getFinished() {
-    return DateUtils.toDate(finishedAsString);
+  public Date getFinishedAt() {
+    return DateUtils.toDate(finishedAtAsString);
   }
 
-  public String getFinishedAsString() {
-    return finishedAsString;
+  public String getFinishedAtAsString() {
+    return finishedAtAsString;
   }
 
-  public int getTotalRecords() {
-    return totalRecords;
+  public Total getTotal() {
+    return total;
   }
 
-  public void setTotalRecords(int totalRecords) {
-    this.totalRecords = totalRecords;
-  }
-
-  public int getTotalBillable() {
-    return totalBillable;
-  }
-
-  public void setTotalBillable(int totalBillable) {
-    this.totalBillable = totalBillable;
-  }
-
-  public int getTotalProcessed() {
-    return totalProcessed;
-  }
-
-  public void setTotalProcessed(int totalProcessed) {
-    this.totalProcessed = totalProcessed;
-  }
-
-  public int getTotalValid() {
-    return totalValid;
-  }
-
-  public void setTotalValid(int totalValid) {
-    this.totalValid = totalValid;
-  }
-
-  public int getTotalInvalid() {
-    return totalInvalid;
-  }
-
-  public void setTotalInvalid(int totalInvalid) {
-    this.totalInvalid = totalInvalid;
-  }
-
-  public int getTotalCatchall() {
-    return totalCatchall;
-  }
-
-  public void setTotalCatchall(int totalCatchall) {
-    this.totalCatchall = totalCatchall;
-  }
-
-  public int getTotalDisposable() {
-    return totalDisposable;
-  }
-
-  public void setTotalDisposable(int totalDisposable) {
-    this.totalDisposable = totalDisposable;
-  }
-
-  public int getTotalUnknown() {
-    return totalUnknown;
-  }
-
-  public void setTotalUnknown(int totalUnknown) {
-    this.totalUnknown = totalUnknown;
-  }
-
-  public int getTotalDuplicates() {
-    return totalDuplicates;
-  }
-
-  public void setTotalDuplicates(int totalDuplicates) {
-    this.totalDuplicates = totalDuplicates;
-  }
-
-  public int getTotalBadSyntax() {
-    return totalBadSyntax;
-  }
-
-  public void setTotalBadSyntax(int totalBadSyntax) {
-    this.totalBadSyntax = totalBadSyntax;
+  public void setTotal(Total total) {
+    this.total = total;
   }
 
   public double getBounceEstimate() {
@@ -210,6 +112,120 @@ public class JobsStatusResponse extends GenericResponse {
 
   public void setJobStatus(JobStatus jobStatus) {
     this.jobStatus = jobStatus;
+  }
+
+  public static class Total {
+
+    @Key("records")
+    private int records;
+
+    @Key("billable")
+    private int billable;
+
+    @Key("processed")
+    private int processed;
+
+    @Key("valid")
+    private int valid;
+
+    @Key("invalid")
+    private int invalid;
+
+    @Key("catchall")
+    private int catchall;
+
+    @Key("disposable")
+    private int disposable;
+
+    @Key("unknown")
+    private int unknown;
+
+    @Key("duplicates")
+    private int duplicates;
+
+    @Key("bad_syntax")
+    private int badSyntax;
+
+    public int getRecords() {
+      return records;
+    }
+
+    public void setRecords(int records) {
+      this.records = records;
+    }
+
+    public int getBillable() {
+      return billable;
+    }
+
+    public void setBillable(int billable) {
+      this.billable = billable;
+    }
+
+    public int getProcessed() {
+      return processed;
+    }
+
+    public void setProcessed(int processed) {
+      this.processed = processed;
+    }
+
+    public int getValid() {
+      return valid;
+    }
+
+    public void setValid(int valid) {
+      this.valid = valid;
+    }
+
+    public int getInvalid() {
+      return invalid;
+    }
+
+    public void setInvalid(int invalid) {
+      this.invalid = invalid;
+    }
+
+    public int getCatchall() {
+      return catchall;
+    }
+
+    public void setCatchall(int catchall) {
+      this.catchall = catchall;
+    }
+
+    public int getDisposable() {
+      return disposable;
+    }
+
+    public void setDisposable(int disposable) {
+      this.disposable = disposable;
+    }
+
+    public int getUnknown() {
+      return unknown;
+    }
+
+    public void setUnknown(int unknown) {
+      this.unknown = unknown;
+    }
+
+    public int getDuplicates() {
+      return duplicates;
+    }
+
+    public void setDuplicates(int duplicates) {
+      this.duplicates = duplicates;
+    }
+
+    public int getBadSyntax() {
+      return badSyntax;
+    }
+
+    public void setBadSyntax(int badSyntax) {
+      this.badSyntax = badSyntax;
+    }
+
   }
 
 }

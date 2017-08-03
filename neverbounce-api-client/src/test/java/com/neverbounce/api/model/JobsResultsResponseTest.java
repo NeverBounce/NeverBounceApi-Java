@@ -1,12 +1,17 @@
 package com.neverbounce.api.model;
 
+import static com.neverbounce.api.model.Flag.HAS_DNS;
+import static com.neverbounce.api.model.Flag.HAS_DNS_MX;
+import static com.neverbounce.api.model.Flag.SMTP_CONNECTABLE;
 import static com.neverbounce.api.model.Result.INVALID;
 import static com.neverbounce.api.model.Status.SUCCESS;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by lcsontos on 7/27/17.
@@ -51,20 +56,32 @@ public class JobsResultsResponseTest extends AbstractResponseTest<JobsResultsRes
     // Email Data
     EmailData data = result.getEmailData();
     assertNotNull(data);
-    assertEquals("email", data.getEmail());
-    assertEquals("id", data.getId());
-    assertEquals("name", data.getName());
+    assertEquals("invalid@neverbounce.com", data.getEmail());
+    assertEquals("12346", data.getId());
+    assertEquals("Bob McInvalid", data.getName());
+    assertEquals("1234", data.get("customerId"));
 
     // Verification
     SingleCheckResponse verification = result.getVerification();
     assertNotNull(verification);
-    assertEquals(SUCCESS, verification.getStatus());
     assertEquals(INVALID, verification.getResult());
+    assertTrue(verification.getFlags().contains(HAS_DNS));
+    assertTrue(verification.getFlags().contains(HAS_DNS_MX));
+    assertTrue(verification.getFlags().contains(SMTP_CONNECTABLE));
+    assertEquals("", verification.getSuggestedCorrection());
 
     // Address info
     SingleCheckResponse.AddressInfo addressInfo = verification.getAddressInfo();
     assertNotNull(addressInfo);
-    assertEquals("email", addressInfo.getOriginalEmail());
+    assertEquals("invalid@neverbounce.com", addressInfo.getOriginalEmail());
+    assertEquals("invalid@neverbounce.com", addressInfo.getNormalizedEmail());
+    assertEquals("invalid", addressInfo.getAddr());
+    assertEquals("", addressInfo.getAlias());
+    assertEquals("neverbounce.com", addressInfo.getHost());
+    assertEquals("neverbounce.com", addressInfo.getFqdn());
+    assertEquals("neverbounce", addressInfo.getDomain());
+    assertEquals("", addressInfo.getSubdomain());
+    assertEquals("com", addressInfo.getTld());
   }
 
 }

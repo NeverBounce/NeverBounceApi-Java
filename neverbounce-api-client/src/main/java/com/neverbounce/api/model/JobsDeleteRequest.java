@@ -1,13 +1,14 @@
 package com.neverbounce.api.model;
 
 import com.neverbounce.api.internal.HttpClient;
-import com.neverbounce.api.model.AbstractJobsRequest.Builder;
 
 /**
- * https://developers.neverbounce.com/v4.0/reference#jobs-delete
+ * The job and its results cannot be recovered once the job has been deleted. If the results are
+ * needed after a job has been deleted you will need to resubmit and reverify the data.
  *
  * @author Laszlo Csontos
  * @since 4.0.0
+ * @see <a href="https://developers.neverbounce.com/v4.0/reference#jobs-delete">Jobs Delete</a>
  */
 public class JobsDeleteRequest extends AbstractJobsRequest<JobsDeleteResponse> {
 

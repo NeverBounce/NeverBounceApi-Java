@@ -2,6 +2,7 @@ package com.neverbounce.api.model;
 
 import static com.neverbounce.api.model.Flag.HAS_DNS;
 import static com.neverbounce.api.model.Flag.HAS_DNS_MX;
+import static com.neverbounce.api.model.Flag.SMTP_CONNECTABLE;
 import static com.neverbounce.api.model.Status.SUCCESS;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -28,9 +29,14 @@ public class SingleCheckResponseTest extends AbstractResponseTest<SingleCheckRes
     assertEquals(SUCCESS, response.getStatus());
     assertTrue(response.getFlags().contains(HAS_DNS));
     assertTrue(response.getFlags().contains(HAS_DNS_MX));
+    assertTrue(response.getFlags().contains(SMTP_CONNECTABLE));
     assertEquals("", response.getSuggestedCorrection());
     assertEquals("", response.getRetryToken());
-    assertEquals(499, response.getExecutionTime());
+    assertEquals(1, response.getCreditsInfo().getPaidCreditsUsed());
+    assertEquals(0, response.getCreditsInfo().getFreeCreditsUsed());
+    assertEquals(9950778, response.getCreditsInfo().getPaidCreditsRemaining());
+    assertEquals(0, response.getCreditsInfo().getFreeCreditsRemaining());
+    assertEquals(350, response.getExecutionTime());
   }
 
 }

@@ -4,10 +4,9 @@ import com.google.api.client.util.Key;
 import java.util.Set;
 
 /**
- * https://developers.neverbounce.com/v4.0/reference#single-check
- *
  * @author Laszlo Csontos
  * @since 4.0.0
+ * @see <a href="https://developers.neverbounce.com/v4.0/reference#single-check">Single Check</a>
  */
 public class SingleCheckResponse extends GenericResponse {
 
@@ -98,6 +97,9 @@ public class SingleCheckResponse extends GenericResponse {
     private String fqdn;
 
     @Key
+    private String domain;
+
+    @Key
     private String subdomain;
 
     @Key
@@ -151,6 +153,14 @@ public class SingleCheckResponse extends GenericResponse {
       this.fqdn = fqdn;
     }
 
+    public String getDomain() {
+      return domain;
+    }
+
+    public void setDomain(String domain) {
+      this.domain = domain;
+    }
+
     public String getSubdomain() {
       return subdomain;
     }
@@ -165,65 +175,6 @@ public class SingleCheckResponse extends GenericResponse {
 
     public void setTld(String tld) {
       this.tld = tld;
-    }
-
-  }
-
-  public static class CreditsInfo {
-
-    @Key("paid_credits_used")
-    private int paidCreditsUsed;
-
-    @Key("free_credits_used")
-    private int freeCreditsUsed;
-
-    @Key("paid_credits_remaining")
-    private int paidCreditsRemaining;
-
-    @Key("free_credits_remaining")
-    private int freeCreditsRemaining;
-
-    @Key("monthly_api_usage")
-    private int monthlyApiUsage;
-
-    public int getPaidCreditsUsed() {
-      return paidCreditsUsed;
-    }
-
-    public void setPaidCreditsUsed(int paidCreditsUsed) {
-      this.paidCreditsUsed = paidCreditsUsed;
-    }
-
-    public int getFreeCreditsUsed() {
-      return freeCreditsUsed;
-    }
-
-    public void setFreeCreditsUsed(int freeCreditsUsed) {
-      this.freeCreditsUsed = freeCreditsUsed;
-    }
-
-    public int getPaidCreditsRemaining() {
-      return paidCreditsRemaining;
-    }
-
-    public void setPaidCreditsRemaining(int paidCreditsRemaining) {
-      this.paidCreditsRemaining = paidCreditsRemaining;
-    }
-
-    public int getFreeCreditsRemaining() {
-      return freeCreditsRemaining;
-    }
-
-    public void setFreeCreditsRemaining(int freeCreditsRemaining) {
-      this.freeCreditsRemaining = freeCreditsRemaining;
-    }
-
-    public int getMonthlyApiUsage() {
-      return monthlyApiUsage;
-    }
-
-    public void setMonthlyApiUsage(int monthlyApiUsage) {
-      this.monthlyApiUsage = monthlyApiUsage;
     }
 
   }

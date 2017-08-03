@@ -7,10 +7,11 @@ import static com.neverbounce.api.model.SafeToSend.YES;
 import com.google.api.client.util.Value;
 
 /**
- * https://neverbounce.com/help/getting-started/result-codes/
+ * Result codes.
  *
  * @author Laszlo Csontos
  * @since 4.0.0
+ * @see <a href="https://neverbounce.com/help/getting-started/result-codes/">Result Codes</a>
  */
 public enum Result {
 

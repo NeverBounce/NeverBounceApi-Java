@@ -5,35 +5,18 @@ import com.google.api.client.util.Key;
 /**
  * @author Laszlo Csontos
  * @since 4.0.0
+ * @see <a href="https://developers.neverbounce.com/v4.0/reference#account-info">Account</a>
  */
 public class AccountInfoResponse extends GenericResponse {
 
   @Key("billing_type")
   private String billingType;
 
-  @Key
-  private int credits;
+  @Key("credits_info")
+  private CreditsInfo creditsInfo;
 
-  @Key("free_api_credits")
-  private int freeApiCredits;
-
-  @Key("monthly_api_usage")
-  private int monthlyApiUsage;
-
-  @Key("monthly_dashboard_usage")
-  private int monthlyDashboardUsage;
-
-  @Key("jobs_completed")
-  private int jobsCompleted;
-
-  @Key("jobs_under_review")
-  private int jobsUnderReview;
-
-  @Key("jobs_queued")
-  private int jobsQueued;
-
-  @Key("jobs_processing")
-  private int jobsProcessing;
+  @Key("job_counts")
+  private JobCounts jobCounts;
 
   public String getBillingType() {
     return billingType;
@@ -43,68 +26,68 @@ public class AccountInfoResponse extends GenericResponse {
     this.billingType = billingType;
   }
 
-  public int getCredits() {
-    return credits;
+  public CreditsInfo getCreditsInfo() {
+    return creditsInfo;
   }
 
-  public void setCredits(int credits) {
-    this.credits = credits;
+  public void setCreditsInfo(CreditsInfo creditsInfo) {
+    this.creditsInfo = creditsInfo;
   }
 
-  public int getFreeApiCredits() {
-    return freeApiCredits;
+  public JobCounts getJobCounts() {
+    return jobCounts;
   }
 
-  public void setFreeApiCredits(int freeApiCredits) {
-    this.freeApiCredits = freeApiCredits;
+  public void setJobCounts(JobCounts jobCounts) {
+    this.jobCounts = jobCounts;
   }
 
-  public int getMonthlyApiUsage() {
-    return monthlyApiUsage;
-  }
+  public static class JobCounts {
 
-  public void setMonthlyApiUsage(int monthlyApiUsage) {
-    this.monthlyApiUsage = monthlyApiUsage;
-  }
+    @Key("completed")
+    private int completed;
 
-  public int getMonthlyDashboardUsage() {
-    return monthlyDashboardUsage;
-  }
+    @Key("under_review")
+    private int underReview;
 
-  public void setMonthlyDashboardUsage(int monthlyDashboardUsage) {
-    this.monthlyDashboardUsage = monthlyDashboardUsage;
-  }
+    @Key("queued")
+    private int queued;
 
-  public int getJobsCompleted() {
-    return jobsCompleted;
-  }
+    @Key("processing")
+    private int processing;
 
-  public void setJobsCompleted(int jobsCompleted) {
-    this.jobsCompleted = jobsCompleted;
-  }
+    public int getCompleted() {
+      return completed;
+    }
 
-  public int getJobsUnderReview() {
-    return jobsUnderReview;
-  }
+    public void setCompleted(int completed) {
+      this.completed = completed;
+    }
 
-  public void setJobsUnderReview(int jobsUnderReview) {
-    this.jobsUnderReview = jobsUnderReview;
-  }
+    public int getUnderReview() {
+      return underReview;
+    }
 
-  public int getJobsQueued() {
-    return jobsQueued;
-  }
+    public void setUnderReview(int underReview) {
+      this.underReview = underReview;
+    }
 
-  public void setJobsQueued(int jobsQueued) {
-    this.jobsQueued = jobsQueued;
-  }
+    public int getQueued() {
+      return queued;
+    }
 
-  public int getJobsProcessing() {
-    return jobsProcessing;
-  }
+    public void setQueued(int queued) {
+      this.queued = queued;
+    }
 
-  public void setJobsProcessing(int jobsProcessing) {
-    this.jobsProcessing = jobsProcessing;
+    public int getProcessing() {
+      return processing;
+    }
+
+    public void setProcessing(int processing) {
+      this.processing = processing;
+    }
+
   }
 
 }
