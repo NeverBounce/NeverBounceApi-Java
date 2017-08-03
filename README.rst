@@ -3,10 +3,10 @@ NeverBounceApi-Java
 *********************
 
 .. image:: https://neverbounce-marketing.s3.amazonaws.com/neverbounce_color_600px.png
-:target: https://neverbounce.com
+  :target: https://neverbounce.com
   :width: 600
-      :align: center
-      :alt: NeverBounce Logo
+  :align: center
+  :alt: NeverBounce Logo
 
 |travisci| |codeclimate|
 
@@ -179,11 +179,11 @@ raw v4 API, reading through the `official API docs<https://developers.neverbounc
 will be valuable in conjunction with using the Javadoc_.
 
 .. |travisci| image:: https://travis-ci.org/NeverBounce/NeverBounceApi-Java.svg?branch=master
-:target: https://travis-ci.org/NeverBounce/NeverBounceApi-Java
+  :target: https://travis-ci.org/NeverBounce/NeverBounceApi-Java
   :alt: Build Status
 
 .. |codeclimate| image:: https://codeclimate.com/github/NeverBounce/NeverBounceApi-Java/badges/gpa.svg
-:target: https://codeclimate.com/github/NeverBounce/NeverBounceApi-Java
+  :target: https://codeclimate.com/github/NeverBounce/NeverBounceApi-Java
   :alt: Code Climate
 
 .. _Javadoc: http://neverbounce.github.io/NeverBounceApi-Java
