@@ -56,7 +56,11 @@
     <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
     <maven-compiler-plugin.source.version>1.6</maven-compiler-plugin.source.version>
     <maven-compiler-plugin.target.version>1.6</maven-compiler-plugin.target.version>
+    <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+    <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
     <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
+    <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+    <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <slf4j-api.version>1.7.25</slf4j-api.version>

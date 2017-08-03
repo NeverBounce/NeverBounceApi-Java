@@ -1,9 +1,9 @@
 package com.neverbounce.api.examples;
 
-import static com.neverbounce.api.internal.JsonUtils.printJson;
-
 import com.neverbounce.api.client.NeverbounceClient;
 import com.neverbounce.api.client.NeverbounceClientFactory;
+import com.neverbounce.api.client.exception.NeverbounceApiException;
+import com.neverbounce.api.internal.JsonUtils;
 import com.neverbounce.api.model.AccountInfoRequest;
 import com.neverbounce.api.model.AccountInfoResponse;
 import com.neverbounce.api.model.JobsCreateResponse;
@@ -50,7 +50,7 @@ public class Main {
     // Account info
     AccountInfoRequest accountInfoRequest = neverbounceClient.createAccountInfoRequest();
     AccountInfoResponse accountInfoResponse = accountInfoRequest.execute();
-    printJson(accountInfoResponse);
+    printJson("AccountInfoResponse", accountInfoResponse);
 
     // Single check
     SingleCheckResponse singleCheckResponse = neverbounceClient
@@ -62,67 +62,102 @@ public class Main {
             .build()
             .execute();
 
-    printJson(singleCheckResponse);
+    printJson("SingleCheckResponse", singleCheckResponse);
 
     // Job creation
     JobsCreateResponse jobsCreateResponse = neverbounceClient
         .prepareJobsCreateWithSuppliedJsonRequest()
         .addInput("github@laszlocsontos.com", "Laszlo Csontos")
-        .withAutoParse(true)
-        .withAutoStart(true)
+        .withAutoParse(false)
+        .withAutoStart(false)
         .withFilename("test.csv")
         .build()
         .execute();
 
-    printJson(jobsCreateResponse);
+    printJson("JobsCreateResponse", jobsCreateResponse);
 
     long jobId = jobsCreateResponse.getJobId();
 
-    // Job results
-    JobsResultsResponse jobsResultsResponse = neverbounceClient
-        .prepareJobsResultsRequest()
-        .withJobId(jobId)
-        .build()
-        .execute();
-
-    printJson(jobsResultsResponse);
-
     // Job status
+
     JobsStatusResponse jobsStatusResponse = neverbounceClient
         .prepareJobsStatusRequest()
         .withJobId(jobId)
         .build()
         .execute();
 
-    printJson(jobsStatusResponse);
+    printJson("JobsStatusResponse", jobsStatusResponse);
+
+    // Job parse
+
+    JobsParseResponse jobsParseResponse = neverbounceClient
+        .prepareJobsParseRequest()
+        .withJobId(jobId)
+        .withAutoStart(false)
+        .build()
+        .execute();
+
+    printJson("JobsParseResponse", jobsParseResponse);
+
+    // Job start
+
+    while (true) {
+      // Workaround for "This job is not in a state which can be ran"
+      try {
+        JobsStartResponse jobsStartResponse = neverbounceClient
+            .prepareJobsStartRequest()
+            .withJobId(jobId)
+            .build()
+            .execute();
+
+        printJson("JobsStartResponse", jobsStartResponse);
+        break;
+      } catch (NeverbounceApiException nae) {
+        System.out.println("JobsStartResponse: " + nae.getMessage());
+
+        // Sleep
+        try {
+          Thread.sleep(1000);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+
+    // Job results
+
+    while (true) {
+      // Workaround for "Results are not currently available for this job"
+      try {
+        JobsResultsResponse jobsResultsResponse = neverbounceClient
+            .prepareJobsResultsRequest()
+            .withJobId(jobId)
+            .build()
+            .execute();
+
+        printJson("JobsResultsResponse", jobsResultsResponse);
+        break;
+      } catch (NeverbounceApiException nae) {
+        System.out.println("JobsResultsResponse: " + nae.getMessage());
+
+        // Sleep
+        try {
+          Thread.sleep(1000);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+    }
 
     // Job search
+
     JobsSearchResponse jobsSearchResponse = neverbounceClient
         .prepareJobsSearchRequest()
         .withJobId(jobId)
         .build()
         .execute();
 
-    printJson(jobsSearchResponse);
-
-    // Job start
-    JobsStartResponse jobsStartResponse = neverbounceClient
-        .prepareJobsStartRequest()
-        .withJobId(jobId)
-        .build()
-        .execute();
-
-    printJson(jobsStartResponse);
-
-    // Job parse
-    JobsParseResponse jobsParseResponse = neverbounceClient
-        .prepareJobsParseRequest()
-        .withJobId(jobId)
-        .withAutoStart(true)
-        .build()
-        .execute();
-
-    printJson(jobsParseResponse);
+    printJson("JobsSearchResponse", jobsSearchResponse);
 
     // Job delete
     JobsDeleteResponse jobsDeleteResponse = neverbounceClient
@@ -131,7 +166,12 @@ public class Main {
         .build()
         .execute();
 
-    printJson(jobsDeleteResponse);
+    printJson("JobsDeleteResponse", jobsDeleteResponse);
+  }
+
+  private static void printJson(String callName, Object response) throws Exception {
+    System.out.print(callName + ": ");
+    JsonUtils.printJson(response);
   }
 
 }
