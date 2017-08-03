@@ -16,7 +16,7 @@ import com.neverbounce.api.internal.HttpClient;
  */
 public class JobsParseRequest extends AbstractJobsRequest<JobsParseResponse> {
 
-  public static final String PATH = "jobs/start";
+  public static final String PATH = "jobs/parse";
 
   @Key("auto_start")
   private final Integer autoStart;
