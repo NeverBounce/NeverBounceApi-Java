@@ -101,7 +101,7 @@ public class Main {
 
     // Job start
 
-    while(true) {
+    while (true) {
       JobsStartResponse jobsStartResponse = null;
 
       // Workaround for "This job is not in a state which can be ran"
@@ -131,7 +131,7 @@ public class Main {
 
     // Job results
 
-    while(true) {
+    while (true) {
       JobsResultsResponse jobsResultsResponse = null;
 
       // Workaround for "Results are not currently available for this job"
