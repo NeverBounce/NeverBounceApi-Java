@@ -121,6 +121,11 @@ public class HttpClientImpl implements HttpClient {
 
       R response = httpRequest.execute().parseAs(responseClass);
       Status status = response.getStatus();
+
+      LOGGER.debug(
+          "Executed {} HTTP request, response status is {}.",
+          httpRequest.getRequestMethod(), status.name());
+
       if (!SUCCESS.equals(status)) {
         throw new NeverbounceApiException(response);
       }
@@ -142,6 +147,8 @@ public class HttpClientImpl implements HttpClient {
     if (HTTP_METHOD_GET.equals(requestMethod)) {
       GenericUrl url = httpRequest.getUrl();
       url.set(API_KEY, apiKey);
+
+      LOGGER.debug("Prepared {} request, for url {}.", HTTP_METHOD_GET, url.toString());
       return;
     }
 
@@ -151,6 +158,11 @@ public class HttpClientImpl implements HttpClient {
           new HashMap<String, Object>(Data.mapOf(jsonHttpContent.getData()));
       requestData.put(API_KEY, apiKey);
       httpRequest.setContent(new JsonHttpContent(JSON_FACTORY, requestData));
+
+      LOGGER.debug(
+          "Prepared {} request, for url {} with data {}.",
+          HTTP_METHOD_POST, httpRequest.getUrl().toString(), requestData);
+
       return;
     }
 
