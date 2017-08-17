@@ -14,6 +14,8 @@ import com.neverbounce.api.model.JobsSearchResponse;
 import com.neverbounce.api.model.JobsStartResponse;
 import com.neverbounce.api.model.JobsStatusResponse;
 import com.neverbounce.api.model.SingleCheckResponse;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -64,10 +66,18 @@ public class Main {
 
     printJson("SingleCheckResponse", singleCheckResponse);
 
+    Map<String, Object> customData = new LinkedHashMap<String, Object>();
+    customData.put("customerId", "1234");
+    customData.put("subscriptionType", "paid");
+    customData.put("email", "github@laszlocsontos.com");
+
     // Job creation
     JobsCreateResponse jobsCreateResponse = neverbounceClient
         .prepareJobsCreateWithSuppliedJsonRequest()
         .addInput("github@laszlocsontos.com", "Laszlo Csontos")
+        .addInput("id1", "github@laszlocsontos.com", "Laszlo Csontos")
+        .addInput("github@laszlocsontos.com")
+        .addInput(customData)
         .withAutoParse(false)
         .withAutoStart(false)
         .withFilename("test.csv")

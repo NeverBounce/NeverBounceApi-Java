@@ -78,10 +78,17 @@ You can verify single emails::
 And you can create, query the status of, and control email verification bulk
 jobs::
 
+  // Note: having an "email" field is mandatory, everything else is optional
+  Map<String, Object> customData = new LinkedHashMap<String, Object>();
+  customData.put("email", "carrot@veggies.com");
+  customData.put("customerId", 1234);
+  customData.put("subscriptionType", "PAID");
+
   JobsCreateResponse jobsCreateResponse = neverbounceClient
       .prepareJobsCreateWithSuppliedJsonRequest()
       .addInput("tomato@veggies.com", "Tomato")
-      .addInput("cucumber@veggies.com", "Cucumber")
+      .addInput("id-1234", "cucumber@veggies.com", "Cucumber")
+      .addInput(customData)
       .withFilename("test.csv")
       .build()
       .execute();
