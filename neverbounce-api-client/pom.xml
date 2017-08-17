@@ -85,6 +85,31 @@
           </execution>
         </executions>
       </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>${maven-jar-plugin.version}</version>
+        <configuration>
+          <archive>
+            <index>true</index>
+            <manifestSections>
+              <manifestSection>
+                <name>com/neverbounce/api/</name>
+                <manifestEntries>
+                  <Specification-Title>${project.description}</Specification-Title>
+                  <Specification-Version>${project.artifact.selectedVersion.majorVersion}.${project.artifact.selectedVersion.minorVersion}</Specification-Version>
+                  <Specification-Vendor>${project.organization.name}</Specification-Vendor>
+                  <Implementation-Title>com.neverbounce.api</Implementation-Title>
+                  <Implementation-Version>${project.version}</Implementation-Version>
+                  <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
+                  <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+                </manifestEntries>
+              </manifestSection>
+            </manifestSections>
+          </archive>
+        </configuration>
+      </plugin>
     </plugins>
 
     <pluginManagement>

@@ -12,6 +12,7 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.http.json.JsonHttpContent;
 import com.google.api.client.json.JsonParser;
 import com.google.api.client.util.Data;
+import com.neverbounce.api.Root;
 import com.neverbounce.api.client.exception.NeverbounceApiException;
 import com.neverbounce.api.client.exception.NeverbounceIoException;
 import com.neverbounce.api.model.Request;
@@ -20,6 +21,8 @@ import com.neverbounce.api.model.Status;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Internal use only.
@@ -29,10 +32,16 @@ import java.util.Map;
  */
 public class HttpClientImpl implements HttpClient {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(HttpClientImpl.class);
+
+  // Ensure that package com.neverbounce.api gets loaded by the JVM
+  private static final Root ROOT = new Root();
+
   private static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
 
   private final String apiKey;
   private final HttpRequestFactory requestFactory;
+  private final String version;
 
   public HttpClientImpl(String apiKey) {
     this(apiKey, HTTP_TRANSPORT);
@@ -51,6 +60,18 @@ public class HttpClientImpl implements HttpClient {
     };
 
     requestFactory = httpTransport.createRequestFactory(httpRequestInitializer);
+
+    // Locate main package
+    Package apiPackage = Package.getPackage("com.neverbounce.api");
+    assert apiPackage != null: "Internal error: package com.neverbounce.api couldn't be loaded";
+
+    // Extract SDK version from JAR's MANIFEST.MF
+    String version = apiPackage.getImplementationVersion();
+    assert version != null && version.length() > 0;
+
+    this.version = version;
+
+    LOGGER.info("Initialized Neverbounce API HTTP client; version: {}.", version);
   }
 
   @Override
