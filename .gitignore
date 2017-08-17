@@ -25,3 +25,7 @@ nbdist/
 
 ### Config for local development ###
 .env
+
+### Maven release files
+release.properties
+pom.xml.releaseBackup
