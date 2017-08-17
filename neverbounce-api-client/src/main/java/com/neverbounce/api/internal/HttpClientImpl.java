@@ -3,6 +3,7 @@ package com.neverbounce.api.internal;
 import static com.neverbounce.api.model.Status.SUCCESS;
 
 import com.google.api.client.http.GenericUrl;
+import com.google.api.client.http.HttpHeaders;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestFactory;
 import com.google.api.client.http.HttpRequestInitializer;
@@ -131,6 +132,10 @@ public class HttpClientImpl implements HttpClient {
   }
 
   private void prepareRequest(HttpRequest httpRequest) {
+    HttpHeaders headers = httpRequest.getHeaders();
+    headers.setUserAgent("NeverBounceApi-Java/" + version);
+    httpRequest.setSuppressUserAgentSuffix(true);
+
     String requestMethod = httpRequest.getRequestMethod();
     if (HTTP_METHOD_GET.equals(requestMethod)) {
       GenericUrl url = httpRequest.getUrl();
