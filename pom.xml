@@ -24,6 +24,7 @@
   </licenses>
 
   <scm>
+    <connection>scm:git:git@github.com:NeverBounce/NeverBounceApi-Java.git</connection>
     <url>https://github.com/NeverBounce/NeverBounceApi-Java</url>
   </scm>
 
