@@ -64,7 +64,7 @@ public class HttpClientImpl implements HttpClient {
 
     // Locate main package
     Package apiPackage = Package.getPackage("com.neverbounce.api");
-    assert apiPackage != null: "Internal error: package com.neverbounce.api couldn't be loaded";
+    assert apiPackage != null : "Internal error: package com.neverbounce.api couldn't be loaded";
 
     // Extract SDK version from JAR's MANIFEST.MF
     String version = apiPackage.getImplementationVersion();
