@@ -68,7 +68,9 @@ public class HttpClientImpl implements HttpClient {
 
     // Extract SDK version from JAR's MANIFEST.MF
     String version = apiPackage.getImplementationVersion();
-    assert version != null && version.length() > 0;
+    if (version == null || version.length() == 0) {
+      version = "Unknown";
+    }
 
     this.version = version;
 
