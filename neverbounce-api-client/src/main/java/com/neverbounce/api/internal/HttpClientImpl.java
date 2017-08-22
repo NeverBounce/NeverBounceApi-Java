@@ -13,7 +13,7 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.http.json.JsonHttpContent;
 import com.google.api.client.json.JsonParser;
 import com.google.api.client.util.Data;
-import com.neverbounce.api.Root;
+import com.neverbounce.api.Version;
 import com.neverbounce.api.client.exception.NeverbounceApiException;
 import com.neverbounce.api.client.exception.NeverbounceIoException;
 import com.neverbounce.api.model.Request;
@@ -35,14 +35,10 @@ public class HttpClientImpl implements HttpClient {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(HttpClientImpl.class);
 
-  // Ensure that package com.neverbounce.api gets loaded by the JVM
-  private static final Root ROOT = new Root();
-
   private static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
 
   private final String apiKey;
   private final HttpRequestFactory requestFactory;
-  private final String version;
 
   public HttpClientImpl(String apiKey) {
     this(apiKey, HTTP_TRANSPORT);
@@ -62,18 +58,7 @@ public class HttpClientImpl implements HttpClient {
 
     requestFactory = httpTransport.createRequestFactory(httpRequestInitializer);
 
-    // Locate main package
-    Package apiPackage = Package.getPackage("com.neverbounce.api");
-    assert apiPackage != null : "Internal error: package com.neverbounce.api couldn't be loaded";
-
-    // Extract SDK version from JAR's MANIFEST.MF
-    String version = apiPackage.getImplementationVersion();
-    if (version == null || version.length() == 0) {
-      version = "Unknown";
-    }
-
-    this.version = version;
-
+    String version = Version.INSTANCE.getVersion();
     LOGGER.info("Initialized Neverbounce API HTTP client; version: {}.", version);
   }
 
@@ -140,6 +125,7 @@ public class HttpClientImpl implements HttpClient {
 
   private void prepareRequest(HttpRequest httpRequest) {
     HttpHeaders headers = httpRequest.getHeaders();
+    String version = Version.INSTANCE.getVersion();
     headers.setUserAgent("NeverBounceApi-Java/" + version);
     httpRequest.setSuppressUserAgentSuffix(true);
 
