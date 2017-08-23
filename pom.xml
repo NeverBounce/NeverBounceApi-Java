@@ -10,6 +10,7 @@
 
   <name>NeverBounce API Java</name>
   <description>NeverBounce API Java Wrapper</description>
+  <url>https://github.com/NeverBounce/NeverBounceApi-Java</url>
 
   <organization>
     <name>Metrics Delivered LLC.</name>
