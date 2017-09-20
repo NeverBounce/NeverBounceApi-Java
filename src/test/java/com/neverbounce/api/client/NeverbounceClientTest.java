@@ -24,6 +24,8 @@ import com.neverbounce.api.model.JobsStartRequest;
 import com.neverbounce.api.model.JobsStartResponse;
 import com.neverbounce.api.model.JobsStatusRequest;
 import com.neverbounce.api.model.JobsStatusResponse;
+import com.neverbounce.api.model.PoeConfirmRequest;
+import com.neverbounce.api.model.PoeConfirmResponse;
 import com.neverbounce.api.model.SingleCheckRequest;
 import com.neverbounce.api.model.SingleCheckResponse;
 import org.junit.Before;
@@ -257,4 +259,24 @@ public class NeverbounceClientTest {
     assertNotNull(jobsParseResponse);
   }
 
+  /*@Test
+  public void testPoeConfirmRequest() {
+    when(
+        httpClient.postForObject(
+            eq(PoeConfirmRequest.PATH),
+            any(PoeConfirmRequest.class),
+            eq(PoeConfirmResponse.class))
+    ).thenReturn(
+        new PoeConfirmResponse()
+    );
+	  PoeConfirmRequest poeConfirmRequest = neverbounceClient
+		        .preparePoeConfirmRequest()
+		        .withEmail("github@laszlocsontos.com")
+		        .withTransactionId("trnsid")
+		        .withConfirmationToken("asdf")
+		        .withResult("valid")
+		        .build();
+	  PoeConfirmResponse poeConfirmResponse = poeConfirmRequest.execute();
+    //assertNotNull(poeConfirmResponse);
+  }*/
 }

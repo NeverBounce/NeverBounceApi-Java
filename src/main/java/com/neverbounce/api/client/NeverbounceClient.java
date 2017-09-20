@@ -9,7 +9,9 @@ import com.neverbounce.api.model.JobsResultsRequest;
 import com.neverbounce.api.model.JobsSearchRequest;
 import com.neverbounce.api.model.JobsStartRequest;
 import com.neverbounce.api.model.JobsStatusRequest;
+import com.neverbounce.api.model.PoeConfirmRequest;
 import com.neverbounce.api.model.SingleCheckRequest;
+
 
 /**
  * Entry point to Neverbounce's API.
@@ -45,5 +47,7 @@ public interface NeverbounceClient {
   JobsStartRequest.Builder prepareJobsStartRequest();
 
   JobsParseRequest.Builder prepareJobsParseRequest();
+  
+  PoeConfirmRequest.Builder preparePoeConfirmRequest();
 
 }

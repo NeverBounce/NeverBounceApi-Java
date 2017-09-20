@@ -14,6 +14,7 @@ import com.neverbounce.api.model.JobsSearchResponse;
 import com.neverbounce.api.model.JobsStartResponse;
 import com.neverbounce.api.model.JobsStatusResponse;
 import com.neverbounce.api.model.SingleCheckResponse;
+import com.neverbounce.api.model.PoeConfirmResponse;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import org.apache.commons.cli.CommandLine;
@@ -177,6 +178,18 @@ public class Main {
         .execute();
 
     printJson("JobsDeleteResponse", jobsDeleteResponse);
+
+    // POE Confirm
+    PoeConfirmResponse poeConfirmResponse = neverbounceClient
+        .preparePoeConfirmRequest()
+        .withEmail("david@neverbounce.com")
+        .withTransactionId("abcd")
+        .withConfirmationToken("token")
+        .withResult("valid")
+        .build()
+        .execute();
+
+    printJson("PoeConfirmResponse", poeConfirmResponse);
   }
 
   private static void printJson(String callName, Object response) throws Exception {

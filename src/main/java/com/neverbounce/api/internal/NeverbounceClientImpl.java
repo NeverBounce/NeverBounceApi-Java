@@ -11,6 +11,7 @@ import com.neverbounce.api.model.JobsResultsRequest;
 import com.neverbounce.api.model.JobsSearchRequest;
 import com.neverbounce.api.model.JobsStartRequest;
 import com.neverbounce.api.model.JobsStatusRequest;
+import com.neverbounce.api.model.PoeConfirmRequest;
 import com.neverbounce.api.model.SingleCheckRequest;
 
 /**
@@ -75,6 +76,11 @@ public final class NeverbounceClientImpl implements NeverbounceClient {
   @Override
   public JobsParseRequest.Builder prepareJobsParseRequest() {
     return new JobsParseRequest.Builder(httpClient);
+  }
+
+  @Override
+  public PoeConfirmRequest.Builder preparePoeConfirmRequest() {
+    return new PoeConfirmRequest.Builder(httpClient);
   }
 
 }
