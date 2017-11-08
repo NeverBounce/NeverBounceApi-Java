@@ -22,7 +22,7 @@ public enum Flag {
    */
   @Value("has_dns_mx")
   HAS_DNS_MX(""),
-
+    
   /**
    * The input given doesn't appear to be an email.
    */
@@ -45,7 +45,91 @@ public enum Flag {
    * Role Account.
    */
   @Value("role_account")
-  ROLE_ACCOUNT("");
+  ROLE_ACCOUNT(""),
+  
+  /**
+   * Disposable Email.
+   */
+  @Value("disposable_email")
+  DISPOSABLE_EMAIL("The input given is a disposable email"),
+  
+  /**
+   * Government Host.
+   */
+  @Value("government_host")
+  GOVERNMENT_HOST("The input given is a government email"),
+  
+  /**
+   * Acedemic Host.
+   */
+  @Value("acedemic_host")
+  ACEDEMIC_HOST("The input given is a acedemic email"),
+  
+  /**
+   * Military Host.
+   */
+  @Value("military_host")
+  MILITARY_HOST("The input given is a military email"),
+  
+  /**
+   * International Host.
+   */
+  @Value("international_host")
+  INTERNATIONAL_HOST(""),
+  
+  /**
+   * Squatter Host.
+   */
+  @Value("squatter_host")
+  SQUATTER_HOST(""),
+  
+  /**
+   * Spelling Mistake.
+   */
+  @Value("spelling_mistake")
+  SPELLING_MISTAKE("The input was misspelled"),
+  
+  /**
+   * Bad DNS.
+   */
+  @Value("bad_dns")
+  BAD_DNS(""),
+  
+  /**
+   * TEMPORARY DNS ERROR.
+   */
+  @Value("temporary_dns_error")
+  TEMPORARY_DNS_ERROR(""),
+  
+  /**
+   * Connect Fails.
+   */
+  @Value("connect_fails")
+  CONNECT_FAILS(""),
+  
+  /**
+   * Accept All.
+   */
+  @Value("accepts_all")
+  ACCEPT_ALL(""),
+  
+  /**
+   * Contains Alias.
+   */
+  @Value("contains_alias")
+  CONTAINS_ALIAS(""),
+  
+  /**
+   * Contains Subdomain.
+   */
+  @Value("contains_subdomain")
+  CONTAINS_SUBDOMAIN(""),
+  
+  /**
+   * Spamtrap Network.
+   */
+  @Value("spamtrap_network")
+  SPAMTRAP_NETWORK("");
 
   private String description;
 
