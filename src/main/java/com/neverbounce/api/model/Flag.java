@@ -96,37 +96,37 @@ public enum Flag {
   BAD_DNS(""),
   
   /**
-   * TEMPORARY DNS ERROR
+   * TEMPORARY DNS ERROR.
    */
   @Value("temporary_dns_error")
   TEMPORARY_DNS_ERROR(""),
   
   /**
-   * Connect Fails
+   * Connect Fails.
    */
   @Value("connect_fails")
   CONNECT_FAILS(""),
   
   /**
-   * Accept All
+   * Accept All.
    */
   @Value("accepts_all")
   ACCEPT_ALL(""),
   
   /**
-   * Contains Alias
+   * Contains Alias.
    */
   @Value("contains_alias")
   CONTAINS_ALIAS(""),
   
   /**
-   * Contains Subdomain
+   * Contains Subdomain.
    */
   @Value("contains_subdomain")
   CONTAINS_SUBDOMAIN(""),
   
   /**
-   * Spamtrap Network
+   * Spamtrap Network.
    */
   @Value("spamtrap_network")
   SPAMTRAP_NETWORK("");
