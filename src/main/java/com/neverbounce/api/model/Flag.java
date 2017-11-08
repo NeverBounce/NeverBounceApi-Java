@@ -16,42 +16,36 @@ public enum Flag {
    */
   @Value("has_dns")
   HAS_DNS(""),
-//    public static final String HAS_DNS = "";
 
   /**
    * Domain has DNS MX.
    */
   @Value("has_dns_mx")
   HAS_DNS_MX(""),
-//    public static final String HAS_DNS_MX = "";
     
   /**
    * The input given doesn't appear to be an email.
    */
   @Value("bad_syntax")
   BAD_SYNTAX("The input given doesn't appear to be an email."),
-//    public static final String BAD_SYNTAX = "The input given doesn't appear to be an email.";
 
   /**
    * This email is registered on a free-mail host. (e.g: yahoo.com, hotmail.com)
    */
   @Value("free_email_host")
   FREE_EMAIL_HOST("This email is registered on a free-mail host. (e.g: yahoo.com, hotmail.com)"),
-//  public static final String FREE_EMAIL_HOST = "This email is registered on a free-mail host. (e.g: yahoo.com, hotmail.com)";
 
   /**
    * SMTP connectable.
    */
   @Value("smtp_connectable")
   SMTP_CONNECTABLE(""),
-//  public static final String SMTP_CONNECTABLE = "";
 
   /**
    * Role Account.
    */
   @Value("role_account")
   ROLE_ACCOUNT(""),
-//  public static final String ROLE_ACCOUNT = "";
   
   /**
    * Disposable Email.
