@@ -25,7 +25,7 @@ You can use NeverBounce's Java SDK with Maven by adding the following to your ``
     <dependency>
       <groupId>com.neverbounce</groupId>
       <artifactId>neverbounce-api-java</artifactId>
-      <version>4.0.3</version>
+      <version>4.0.5</version>
     </dependency>
   </dependencies>
 
@@ -33,14 +33,14 @@ You can use NeverBounce's Java SDK with Maven by adding the following to your ``
 
 You can use NeverBounce's Java SDK with Ivy by adding the following to your ivy.xml::
 
-  <dependency org="com.neverbounce" name="neverbounce-api-java" rev="4.0.3" />
+  <dependency org="com.neverbounce" name="neverbounce-api-java" rev="4.0.5" />
 
 **Gradle**
 
 You can use NeverBounce's Java SDK with Gradle by adding the following to your ``build.gradle`` in
 the ``dependencies`` block::
 
-  compile "com.neverbounce:neverbounce-api-java:4.0.3"
+  compile "com.neverbounce:neverbounce-api-java:4.0.5"
 
 Usage
 -----
@@ -65,10 +65,10 @@ You can verify single emails::
 
   SingleCheckResponse singleCheckResponse = neverbounceClient
           .prepareSingleCheckRequest()
-          .withEmail("github@laszlocsontos.com")
-          .withAddressInfo(true)
-          .withCreditsInfo(true)
-          .withTimeout(300)
+          .withEmail("github@laszlocsontos.com") // address to verify
+          .withAddressInfo(true)  // return address info with response
+          .withCreditsInfo(true)  // return account credits info with response
+          .withTimeout(20)  // only wait on slow email servers for 20 seconds max
           .build()
           .execute();
 
