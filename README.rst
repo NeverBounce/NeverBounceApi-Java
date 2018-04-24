@@ -65,10 +65,10 @@ You can verify single emails::
 
   SingleCheckResponse singleCheckResponse = neverbounceClient
           .prepareSingleCheckRequest()
-          .withEmail("github@laszlocsontos.com")
-          .withAddressInfo(true)
-          .withCreditsInfo(true)
-          .withTimeout(300)
+          .withEmail("github@laszlocsontos.com") // address to verify
+          .withAddressInfo(true)  // return address info with response
+          .withCreditsInfo(true)  // return account credits info with response
+          .withTimeout(20)  // only wait on slow email servers for 20 seconds max
           .build()
           .execute();
 

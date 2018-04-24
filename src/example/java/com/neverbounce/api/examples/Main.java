@@ -61,7 +61,7 @@ public class Main {
             .withEmail("github@laszlocsontos.com")
             .withAddressInfo(true)
             .withCreditsInfo(true)
-            .withTimeout(300)
+            .withTimeout(20)
             .build()
             .execute();
 
