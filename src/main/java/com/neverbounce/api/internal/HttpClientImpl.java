@@ -36,6 +36,8 @@ public class HttpClientImpl implements HttpClient {
   private static final Logger LOGGER = LoggerFactory.getLogger(HttpClientImpl.class);
 
   private static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
+  
+  private static final Integer SOCKET_READ_TIMEOUT = 40000;
 
   private final String apiKey;
   private final HttpRequestFactory requestFactory;
@@ -128,6 +130,7 @@ public class HttpClientImpl implements HttpClient {
     String version = Version.INSTANCE.getVersion();
     headers.setUserAgent("NeverBounceApi-Java/" + version);
     httpRequest.setSuppressUserAgentSuffix(true);
+    httpRequest.setReadTimeout(SOCKET_READ_TIMEOUT);
 
     String requestMethod = httpRequest.getRequestMethod();
     if (HTTP_METHOD_GET.equals(requestMethod)) {
