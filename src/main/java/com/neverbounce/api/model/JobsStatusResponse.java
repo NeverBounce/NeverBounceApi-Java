@@ -33,7 +33,7 @@ public class JobsStatusResponse extends GenericResponse {
   private double bounceEstimate;
 
   @Key("percent_complete")
-  private int percentComplete;
+  private float percentComplete;
 
   @Key("job_status")
   private JobStatus jobStatus;
@@ -98,11 +98,11 @@ public class JobsStatusResponse extends GenericResponse {
     this.bounceEstimate = bounceEstimate;
   }
 
-  public int getPercentComplete() {
+  public float getPercentComplete() {
     return percentComplete;
   }
 
-  public void setPercentComplete(int percentComplete) {
+  public void setPercentComplete(float percentComplete) {
     this.percentComplete = percentComplete;
   }
 
