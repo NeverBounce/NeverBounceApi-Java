@@ -38,7 +38,7 @@ public class JobsStatusResponseTest extends AbstractResponseTest<JobsStatusRespo
     assertEquals(0, response.getTotal().getUnknown());
     assertEquals(0, response.getTotal().getDuplicates());
     assertEquals(0, response.getTotal().getBadSyntax());
-    assertEquals(100.0, response.getPercentComplete(), 0.0);
+    assertEquals(100, response.getPercentComplete(), 0);
     assertEquals(COMPLETE, response.getJobStatus());
   }
 
