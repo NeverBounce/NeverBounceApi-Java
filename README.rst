@@ -25,7 +25,7 @@ You can use NeverBounce's Java SDK with Maven by adding the following to your ``
     <dependency>
       <groupId>com.neverbounce</groupId>
       <artifactId>neverbounce-api-java</artifactId>
-      <version>4.0.5</version>
+      <version>4.0.6</version>
     </dependency>
   </dependencies>
 
@@ -33,14 +33,14 @@ You can use NeverBounce's Java SDK with Maven by adding the following to your ``
 
 You can use NeverBounce's Java SDK with Ivy by adding the following to your ivy.xml::
 
-  <dependency org="com.neverbounce" name="neverbounce-api-java" rev="4.0.5" />
+  <dependency org="com.neverbounce" name="neverbounce-api-java" rev="4.0.6" />
 
 **Gradle**
 
 You can use NeverBounce's Java SDK with Gradle by adding the following to your ``build.gradle`` in
 the ``dependencies`` block::
 
-  compile "com.neverbounce:neverbounce-api-java:4.0.5"
+  compile "com.neverbounce:neverbounce-api-java:4.0.6"
 
 Usage
 -----
@@ -77,18 +77,26 @@ jobs::
 
   // Note: having an "email" field is mandatory, everything else is optional
   Map<String, Object> customData = new LinkedHashMap<String, Object>();
-  customData.put("email", "carrot@veggies.com");
+  customData.put("email", "test1@example.com");
   customData.put("customerId", 1234);
-  customData.put("subscriptionType", "PAID");
+  customData.put("name", "Person 1");
 
-  JobsCreateResponse jobsCreateResponse = neverbounceClient
-      .prepareJobsCreateWithSuppliedJsonRequest()
-      .addInput("tomato@veggies.com", "Tomato")
-      .addInput("id-1234", "cucumber@veggies.com", "Cucumber")
-      .addInput(customData)
-      .withFilename("test.csv")
-      .build()
-      .execute();
+  Map<String, Object> customData2 = new LinkedHashMap<String, Object>();
+  customData2.put("email", "test2@example.com");
+  customData2.put("customerId", 1235);
+  customData2.put("name", "Person 2");
+
+
+  JobsCreateWithSuppliedJsonRequest.Builder builder = neverbounceClient
+          .prepareJobsCreateWithSuppliedJsonRequest();
+
+  builder.addInput(customData);
+  builder.addInput(customData2);
+  JobsCreateResponse jobsCreateResponse = builder
+          .withAutoStart(true)
+          .withAutoParse(true)
+          .build()
+          .execute();
 
   long jobId = jobsCreateResponse.getJobId();
 
