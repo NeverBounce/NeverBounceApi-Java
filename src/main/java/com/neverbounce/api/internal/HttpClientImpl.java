@@ -40,14 +40,21 @@ public class HttpClientImpl implements HttpClient {
   private static final Integer SOCKET_READ_TIMEOUT = 40000;
 
   private final String apiKey;
+  private final String useBaseUrl;
+  
   private final HttpRequestFactory requestFactory;
 
   public HttpClientImpl(String apiKey) {
-    this(apiKey, HTTP_TRANSPORT);
+    this(apiKey, HTTP_TRANSPORT, API_BASE_URL);
+  }
+  
+  public HttpClientImpl(String apiKey, String useBaseUrl) {
+    this(apiKey, HTTP_TRANSPORT, useBaseUrl);
   }
 
-  HttpClientImpl(String apiKey, HttpTransport httpTransport) {
+  HttpClientImpl(String apiKey, HttpTransport httpTransport, String useBaseUrl) {
     this.apiKey = apiKey;
+    this.useBaseUrl = useBaseUrl;
 
     HttpRequestInitializer httpRequestInitializer = new HttpRequestInitializer() {
 
@@ -72,7 +79,7 @@ public class HttpClientImpl implements HttpClient {
   @Override
   public <R extends Response> R getForObject(String path, Request<R> request,
       Class<R> responseClass) {
-    GenericUrl url = new GenericUrl(API_BASE_URL + "/" + path);
+    GenericUrl url = new GenericUrl(this.useBaseUrl + "/" + path);
 
     if (request != null) {
       Map<String, Object> requestData = Data.mapOf(request);
@@ -91,7 +98,7 @@ public class HttpClientImpl implements HttpClient {
   public <R extends Response> R postForObject(String path, Request<R> request,
       Class<R> responseClass) {
 
-    GenericUrl url = new GenericUrl(API_BASE_URL + "/" + path);
+    GenericUrl url = new GenericUrl(this.useBaseUrl + "/" + path);
 
     try {
       HttpRequest httpRequest =
