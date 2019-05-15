@@ -129,7 +129,13 @@ public enum Flag {
    * Spamtrap Network.
    */
   @Value("spamtrap_network")
-  SPAMTRAP_NETWORK("");
+  SPAMTRAP_NETWORK(""),
+  
+  /**
+   * Contains profanity in email
+   */
+  @Value("profanity")
+  PROFANITY("");
 
   private String description;
 
