@@ -135,7 +135,26 @@ public enum Flag {
    * Contains Profanity in email.
    */
   @Value("profanity")
-  PROFANITY("");
+  PROFANITY(""),
+
+  /**
+   * Historical data points were used to determine the result
+   */
+  @Value("historical_response")
+  HISTORICAL_RESPONSE(""),
+
+  /**
+   * Historical verifications were used to determine the result
+   */
+  @Value("historical_response_neverbounce")
+  HISTORICAL_RESPONSE_NEVERBOUNCE(""),
+
+  /**
+   * Historical CE data points were used to determine the result
+   */
+  @Value("historical_response_community_edition")
+  HISTORICAL_RESPONSE_COMMUNITY_EDITION("");
+
 
   private String description;
 

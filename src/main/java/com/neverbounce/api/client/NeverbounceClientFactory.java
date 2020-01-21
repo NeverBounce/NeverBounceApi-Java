@@ -25,4 +25,15 @@ public final class NeverbounceClientFactory {
     return new NeverbounceClientImpl(httpClient);
   }
 
+  /**
+   * Create a new instance of {@link NeverbounceClient}.
+   * @param apiKey API key.
+   * @param apiVersion API version.
+   * @return a new instance of {@link NeverbounceClient}
+   */
+  public static NeverbounceClient create(String apiKey, String apiVersion) {
+    HttpClient httpClient = new HttpClientImpl(apiKey, apiVersion);
+    return new NeverbounceClientImpl(httpClient);
+  }
+
 }

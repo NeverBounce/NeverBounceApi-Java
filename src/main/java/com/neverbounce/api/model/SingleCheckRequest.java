@@ -28,15 +28,19 @@ public class SingleCheckRequest extends AbstractRequest<SingleCheckResponse> {
   @Key
   private final Integer timeout;
 
+  @Key("request_meta_data[leverage_historical_data]")
+  private final Integer historicalData;
+
   SingleCheckRequest(
       HttpClient httpClient, String email, Integer addressInfo, Integer creditsInfo,
-      Integer timeout) {
+      Integer timeout, Integer historicalData) {
 
     super(httpClient);
     this.email = email;
     this.addressInfo = addressInfo;
     this.creditsInfo = creditsInfo;
     this.timeout = timeout;
+    this.historicalData = historicalData;
   }
 
   @Override
@@ -50,6 +54,7 @@ public class SingleCheckRequest extends AbstractRequest<SingleCheckResponse> {
     private Integer addressInfo;
     private Integer creditsInfo;
     private Integer timeout;
+    private Integer historicalData;
 
     public Builder(HttpClient httpClient) {
       super(httpClient);
@@ -75,9 +80,14 @@ public class SingleCheckRequest extends AbstractRequest<SingleCheckResponse> {
       return this;
     }
 
+    public Builder withHistoricalData(boolean historicalData) {
+      this.historicalData = historicalData ? 1 : 0;
+      return this;
+    }
+
     @Override
     protected SingleCheckRequest doBuild() {
-      return new SingleCheckRequest(httpClient, email, addressInfo, creditsInfo, timeout);
+      return new SingleCheckRequest(httpClient, email, addressInfo, creditsInfo, timeout, historicalData);
     }
 
     @Override
