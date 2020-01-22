@@ -87,7 +87,14 @@ public class SingleCheckRequest extends AbstractRequest<SingleCheckResponse> {
 
     @Override
     protected SingleCheckRequest doBuild() {
-      return new SingleCheckRequest(httpClient, email, addressInfo, creditsInfo, timeout, historicalData);
+      return new SingleCheckRequest(
+              httpClient,
+              email,
+              addressInfo,
+              creditsInfo,
+              timeout,
+              historicalData
+      );
     }
 
     @Override

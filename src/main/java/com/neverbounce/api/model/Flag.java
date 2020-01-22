@@ -138,19 +138,19 @@ public enum Flag {
   PROFANITY(""),
 
   /**
-   * Historical data points were used to determine the result
+   * Historical data points were used to determine the result.
    */
   @Value("historical_response")
   HISTORICAL_RESPONSE(""),
 
   /**
-   * Historical verifications were used to determine the result
+   * Historical verifications were used to determine the result.
    */
   @Value("historical_response_neverbounce")
   HISTORICAL_RESPONSE_NEVERBOUNCE(""),
 
   /**
-   * Historical CE data points were used to determine the result
+   * Historical CE data points were used to determine the result.
    */
   @Value("historical_response_community_edition")
   HISTORICAL_RESPONSE_COMMUNITY_EDITION("");

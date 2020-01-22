@@ -194,8 +194,11 @@ public class Main {
   }
 
   private static NeverbounceClient makeClient(CommandLine commandLine) {
-    if(commandLine.hasOption("v")) {
-      return NeverbounceClientFactory.create(commandLine.getOptionValue("a"), commandLine.getOptionValue("v"));
+    if (commandLine.hasOption("v")) {
+      return NeverbounceClientFactory.create(
+              commandLine.getOptionValue("a"),
+              commandLine.getOptionValue("v")
+      );
     }
 
     return NeverbounceClientFactory.create(commandLine.getOptionValue("a"));
