@@ -25,7 +25,16 @@ public class JobsCreateWithSuppliedJsonRequest extends JobsCreateRequest<List<Em
       InputLocation inputLocation, List<EmailData> input, int autoParse, int autoStart,
       Integer runSample, String filename, Integer historicalData) {
 
-    super(httpClient, inputLocation, input, autoParse, autoStart, runSample, filename, historicalData);
+    super(
+            httpClient,
+            inputLocation,
+            input,
+            autoParse,
+            autoStart,
+            runSample,
+            filename,
+            historicalData
+    );
   }
 
   public static class Builder
