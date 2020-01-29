@@ -21,9 +21,7 @@ import java.util.Map;
  */
 public class JobsCreateWithSuppliedJsonRequest extends JobsCreateRequest<List<EmailData>> {
 
-  /**
-   * Creates Job Create request with Json
-   */
+  /** Creates Job Create request with Json. */
   public JobsCreateWithSuppliedJsonRequest(HttpClient httpClient,
       InputLocation inputLocation, List<EmailData> input, int autoParse, int autoStart,
       Integer runSample, String filename, Integer historicalData) {
