@@ -21,11 +21,21 @@ import java.util.Map;
  */
 public class JobsCreateWithSuppliedJsonRequest extends JobsCreateRequest<List<EmailData>> {
 
+  /** Creates Job Create request with Json. */
   public JobsCreateWithSuppliedJsonRequest(HttpClient httpClient,
       InputLocation inputLocation, List<EmailData> input, int autoParse, int autoStart,
-      Integer runSample, String filename) {
+      Integer runSample, String filename, Integer historicalData) {
 
-    super(httpClient, inputLocation, input, autoParse, autoStart, runSample, filename);
+    super(
+            httpClient,
+            inputLocation,
+            input,
+            autoParse,
+            autoStart,
+            runSample,
+            filename,
+            historicalData
+    );
   }
 
   public static class Builder
@@ -68,7 +78,8 @@ public class JobsCreateWithSuppliedJsonRequest extends JobsCreateRequest<List<Em
           toInteger(autoParse),
           toInteger(autoStart),
           toInteger(runSample),
-          filename
+          filename,
+          historicalData
       );
     }
 

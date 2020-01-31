@@ -13,8 +13,9 @@ import com.neverbounce.api.model.Response;
  */
 public interface HttpClient {
 
-  String API_BASE_URL = "https://api.neverbounce.com/v4";
+  String API_BASE_URL = "https://api.neverbounce.com";
   String API_KEY = "key";
+  String DEFAULT_API_VERSION = "v4";
 
   String HTTP_METHOD_GET = "GET";
   String HTTP_METHOD_POST = "POST";

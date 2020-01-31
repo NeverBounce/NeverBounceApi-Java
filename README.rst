@@ -46,11 +46,17 @@ Usage
 -----
 
 The NeverBounce Java SDK provides a simple interface by which to interact
-with NeverBounce's email verification API version 4. To get up and running, make sure
+with NeverBounce's email verification API version 4.x. To get up and running, make sure
 you have your API token on hand::
 
   String token = "my secret API token";
   NeverbounceClient neverbounceClient = NeverbounceClientFactory.create(token);
+
+You can also specify API version (v4 is default)::
+
+  String token = "my secret API token";
+  String version = "v4.1";
+  NeverbounceClient neverbounceClient = NeverbounceClientFactory.create(token, version);
 
 **Examples**
 

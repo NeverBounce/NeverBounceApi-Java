@@ -19,9 +19,18 @@ public class JobsCreateWithRemoteUrlRequest extends JobsCreateRequest<String> {
 
   JobsCreateWithRemoteUrlRequest(HttpClient httpClient,
       InputLocation inputLocation, String input, int autoParse, int autoStart,
-      Integer runSample, String filename) {
+      Integer runSample, String filename, Integer historicalData) {
 
-    super(httpClient, inputLocation, input, autoParse, autoStart, runSample, filename);
+    super(
+            httpClient,
+            inputLocation,
+            input,
+            autoParse,
+            autoStart,
+            runSample,
+            filename,
+            historicalData
+    );
   }
 
   public static class Builder
@@ -50,7 +59,8 @@ public class JobsCreateWithRemoteUrlRequest extends JobsCreateRequest<String> {
           toInteger(autoParse),
           toInteger(autoStart),
           toInteger(runSample),
-          filename
+          filename,
+          historicalData
       );
     }
 

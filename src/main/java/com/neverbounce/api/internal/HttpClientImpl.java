@@ -41,12 +41,23 @@ public class HttpClientImpl implements HttpClient {
 
   private final String apiKey;
   private final HttpRequestFactory requestFactory;
+  private final String apiVersion;
 
   public HttpClientImpl(String apiKey) {
-    this(apiKey, HTTP_TRANSPORT);
+    this(apiKey, HTTP_TRANSPORT, DEFAULT_API_VERSION);
+  }
+
+  public HttpClientImpl(String apiKey, String apiVersion) {
+    this(apiKey, HTTP_TRANSPORT, apiVersion);
   }
 
   HttpClientImpl(String apiKey, HttpTransport httpTransport) {
+    this(apiKey, httpTransport, DEFAULT_API_VERSION);
+  }
+
+
+  HttpClientImpl(String apiKey, HttpTransport httpTransport, String apiVersion) {
+    this.apiVersion = apiVersion;
     this.apiKey = apiKey;
 
     HttpRequestInitializer httpRequestInitializer = new HttpRequestInitializer() {
@@ -72,7 +83,7 @@ public class HttpClientImpl implements HttpClient {
   @Override
   public <R extends Response> R getForObject(String path, Request<R> request,
       Class<R> responseClass) {
-    GenericUrl url = new GenericUrl(API_BASE_URL + "/" + path);
+    GenericUrl url = new GenericUrl(API_BASE_URL + "/" + this.apiVersion + "/" + path);
 
     if (request != null) {
       Map<String, Object> requestData = Data.mapOf(request);
@@ -91,7 +102,7 @@ public class HttpClientImpl implements HttpClient {
   public <R extends Response> R postForObject(String path, Request<R> request,
       Class<R> responseClass) {
 
-    GenericUrl url = new GenericUrl(API_BASE_URL + "/" + path);
+    GenericUrl url = new GenericUrl(API_BASE_URL + "/" + this.apiVersion + "/" + path);
 
     try {
       HttpRequest httpRequest =

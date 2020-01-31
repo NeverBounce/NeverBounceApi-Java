@@ -38,6 +38,7 @@ public class Main {
   public static void main(String... args) throws Exception {
     Options options = new Options();
     options.addOption("a", "api-key", true, "API Key");
+    options.addOption("v", "api-version", true, "API Version");
     CommandLineParser commandLineParser = new DefaultParser();
     CommandLine commandLine = commandLineParser.parse(options, args);
 
@@ -47,8 +48,7 @@ public class Main {
       return;
     }
 
-    NeverbounceClient neverbounceClient =
-        NeverbounceClientFactory.create(commandLine.getOptionValue("a"));
+    NeverbounceClient neverbounceClient = makeClient(commandLine);
 
     // Account info
     AccountInfoRequest accountInfoRequest = neverbounceClient.createAccountInfoRequest();
@@ -62,6 +62,7 @@ public class Main {
             .withAddressInfo(true)
             .withCreditsInfo(true)
             .withTimeout(20)
+            .withHistoricalData(false)
             .build()
             .execute();
 
@@ -190,6 +191,17 @@ public class Main {
         .execute();
 
     printJson("PoeConfirmResponse", poeConfirmResponse);
+  }
+
+  private static NeverbounceClient makeClient(CommandLine commandLine) {
+    if (commandLine.hasOption("v")) {
+      return NeverbounceClientFactory.create(
+              commandLine.getOptionValue("a"),
+              commandLine.getOptionValue("v")
+      );
+    }
+
+    return NeverbounceClientFactory.create(commandLine.getOptionValue("a"));
   }
 
   private static void printJson(String callName, Object response) throws Exception {

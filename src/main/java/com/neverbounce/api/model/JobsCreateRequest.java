@@ -34,9 +34,12 @@ public abstract class JobsCreateRequest<T> extends AbstractRequest<JobsCreateRes
   @Key
   private final String filename;
 
+  @Key("request_meta_data[leverage_historical_data]")
+  private final Integer historicalData;
+
   JobsCreateRequest(HttpClient httpClient,
       InputLocation inputLocation, T input, int autoParse, int autoStart, Integer runSample,
-      String filename) {
+      String filename, Integer historicalData) {
 
     super(httpClient);
     this.inputLocation = inputLocation;
@@ -45,6 +48,7 @@ public abstract class JobsCreateRequest<T> extends AbstractRequest<JobsCreateRes
     this.autoStart = autoStart;
     this.runSample = runSample;
     this.filename = filename;
+    this.historicalData = historicalData;
   }
 
   @Override
@@ -62,6 +66,7 @@ public abstract class JobsCreateRequest<T> extends AbstractRequest<JobsCreateRes
     protected Boolean autoStart;
     protected Boolean runSample;
     protected String filename;
+    protected Integer historicalData;
 
     public Builder(HttpClient httpClient, InputLocation inputLocation) {
       super(httpClient);
@@ -85,6 +90,11 @@ public abstract class JobsCreateRequest<T> extends AbstractRequest<JobsCreateRes
 
     public Builder<T, R> withFilename(String filename) {
       this.filename = filename;
+      return this;
+    }
+
+    public Builder<T, R> withHistoricalData(boolean historicalData) {
+      this.historicalData = historicalData ? 1 : 0;
       return this;
     }
 
