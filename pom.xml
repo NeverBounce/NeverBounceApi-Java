@@ -4,7 +4,7 @@
 
   <groupId>com.neverbounce</groupId>
   <artifactId>neverbounce-api-java</artifactId>
-  <version>4.0.11-SNAPSHOT</version>
+  <version>4.0.10-SNAPSHOT</version>
 
   <name>NeverBounce API Java</name>
   <description>NeverBounce API Java Wrapper</description>
