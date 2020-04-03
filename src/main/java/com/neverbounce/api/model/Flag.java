@@ -153,7 +153,10 @@ public enum Flag {
    * Historical CE data points were used to determine the result.
    */
   @Value("historical_response_community_edition")
-  HISTORICAL_RESPONSE_COMMUNITY_EDITION("");
+  HISTORICAL_RESPONSE_COMMUNITY_EDITION(""),
+
+  @Value("mailbox_full")
+  MAILBOX_FULL("");
 
 
   private String description;
