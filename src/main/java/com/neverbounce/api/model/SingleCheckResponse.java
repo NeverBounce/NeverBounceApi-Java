@@ -16,10 +16,10 @@ public class SingleCheckResponse extends GenericResponse {
   private Result result;
 
   @Key
-  private Set<Flag> flagsSet;
+  private Set<Flag> flagsEnum;
 
   @Key("flags")
-  private Set<String> stringsFlags;
+  private Set<String> flagsStrings;
 
   @Key("suggested_correction")
   private String suggestedCorrection;
@@ -42,21 +42,21 @@ public class SingleCheckResponse extends GenericResponse {
   }
 
   public Set<Flag> getFlags() {
-    return flagsSet;
+    return flagsEnum;
   }
 
   public void setFlags(Set<Flag> flags) {
-    this.flagsSet = flags;
+    this.flagsEnum = flags;
   }
 
-  public Set<String> getStringsFlags() {
-    return stringsFlags;
+  public Set<String> getFlagsStrings() {
+    return flagsStrings;
   }
 
-  public void setStringsFlags(Set<String> flags) {
-    stringsFlags = flags;
+  public void setFlagsStrings(Set<String> flags) {
+    flagsStrings = flags;
 
-    this.flagsSet = new HashSet<Flag>();
+    this.flagsEnum = new HashSet<Flag>();
     Set<Flag> flagsSet = new HashSet<Flag>();
 
     for (String flagString : flags) {
@@ -74,7 +74,7 @@ public class SingleCheckResponse extends GenericResponse {
       flagsSet.add(flag);
     }
 
-    this.flagsSet = flagsSet;
+    this.flagsEnum = flagsSet;
   }
 
   public String getSuggestedCorrection() {
