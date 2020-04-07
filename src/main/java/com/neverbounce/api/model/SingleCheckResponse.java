@@ -1,6 +1,8 @@
 package com.neverbounce.api.model;
 
 import com.google.api.client.util.Key;
+
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -14,7 +16,7 @@ public class SingleCheckResponse extends GenericResponse {
   private Result result;
 
   @Key
-  private Set<Flag> flags;
+  private Set<String> flags;
 
   @Key("suggested_correction")
   private String suggestedCorrection;
@@ -37,10 +39,27 @@ public class SingleCheckResponse extends GenericResponse {
   }
 
   public Set<Flag> getFlags() {
-    return flags;
+    Set<Flag> flagsSet = new HashSet<Flag>();
+
+    for (String flagString : flags) {
+      if (flagString == null) {
+        continue;
+      }
+
+      Flag flag;
+      try {
+        flag = Flag.valueOf(flagString.toUpperCase());
+      } catch (Exception e) {
+        continue;
+      }
+
+      flagsSet.add(flag);
+    }
+
+    return flagsSet;
   }
 
-  public void setFlags(Set<Flag> flags) {
+  public void setFlags(Set<String> flags) {
     this.flags = flags;
   }
 
