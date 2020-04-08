@@ -131,7 +131,11 @@ public enum Flag {
    */
   HISTORICAL_RESPONSE_COMMUNITY_EDITION(""),
 
-  MAILBOX_FULL("");
+  USER_RULE_RESPONSE(""),
+
+  MAILBOX_FULL(""),
+
+  MAILBOX_EXPIRED("");
 
 
   private String description;
