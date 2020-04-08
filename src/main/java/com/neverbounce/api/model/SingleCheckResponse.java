@@ -60,31 +60,7 @@ public class SingleCheckResponse extends GenericResponse {
   public void setFlagsStrings(Set<String> flags) {
     flagsStrings = flags;
 
-    this.flagsEnum = new HashSet<Flag>();
-    Set<Flag> flagsSet = new HashSet<Flag>();
-
-    for (String flagString : flags) {
-      if (flagString == null) {
-        continue;
-      }
-
-      if (flagString.toUpperCase().equals("ACCEPTS_ALL")) {
-        flagsSet.add(Flag.ACCEPT_ALL);
-
-        continue;
-      }
-
-      Flag flag;
-      try {
-        flag = Flag.valueOf(flagString.toUpperCase());
-      } catch (Exception e) {
-        continue;
-      }
-
-      flagsSet.add(flag);
-    }
-
-    this.flagsEnum = flagsSet;
+    this.flagsEnum = mapFlags(flags);
   }
 
   public String getSuggestedCorrection() {
@@ -220,6 +196,33 @@ public class SingleCheckResponse extends GenericResponse {
       this.tld = tld;
     }
 
+  }
+
+  private Set<Flag> mapFlags(Set<String> flags) {
+    Set<Flag> flagsSet = new HashSet<Flag>();
+
+    for (String flagString : flags) {
+      if (flagString == null) {
+        continue;
+      }
+
+      if (flagString.toUpperCase().equals("ACCEPTS_ALL")) {
+        flagsSet.add(Flag.ACCEPT_ALL);
+
+        continue;
+      }
+
+      Flag flag;
+      try {
+        flag = Flag.valueOf(flagString.toUpperCase());
+      } catch (Exception e) {
+        continue;
+      }
+
+      flagsSet.add(flag);
+    }
+
+    return flagsSet;
   }
 
 }
