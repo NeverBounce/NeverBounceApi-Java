@@ -53,6 +53,10 @@ public class SingleCheckResponse extends GenericResponse {
     return flagsStrings;
   }
 
+  /**
+   *
+   * @param flags Set of flags strings
+   */
   public void setFlagsStrings(Set<String> flags) {
     flagsStrings = flags;
 
