@@ -15,7 +15,6 @@ public class SingleCheckResponse extends GenericResponse {
   @Key
   private Result result;
 
-  @Key
   private Set<Flag> flagsEnum;
 
   @Key("flags")
