@@ -60,7 +60,23 @@ public class SingleCheckResponse extends GenericResponse {
   public void setFlagsStrings(Set<String> flags) {
     flagsStrings = flags;
 
-    this.flagsEnum = mapFlags(flags);
+    Set<Flag> flagsSet = new HashSet<Flag>();
+    for (String flagString : hydrateFlags(flags)) {
+      if (flagString == null) {
+        continue;
+      }
+
+      Flag flag;
+      try {
+        flag = Flag.valueOf(flagString.toUpperCase());
+      } catch (Exception e) {
+        continue;
+      }
+
+      flagsSet.add(flag);
+    }
+
+    this.flagsEnum = flagsSet;
   }
 
   public String getSuggestedCorrection() {
@@ -198,29 +214,18 @@ public class SingleCheckResponse extends GenericResponse {
 
   }
 
-  private Set<Flag> mapFlags(Set<String> flags) {
-    Set<Flag> flagsSet = new HashSet<Flag>();
+  private Set<String> hydrateFlags(Set<String> flags) {
+    Set<String> hydratedFlags = new HashSet<String>();
 
-    for (String flagString : flags) {
-      if (flagString == null) {
-        continue;
+    for (String flag : flags) {
+      if (flag.toUpperCase().equals("ACCEPTS_ALL")) {
+        flag = Flag.ACCEPT_ALL.name();
       }
 
-      if (flagString.toUpperCase().equals("ACCEPTS_ALL")) {
-        flagString = Flag.ACCEPT_ALL.name();
-      }
-
-      Flag flag;
-      try {
-        flag = Flag.valueOf(flagString.toUpperCase());
-      } catch (Exception e) {
-        continue;
-      }
-
-      flagsSet.add(flag);
+      hydratedFlags.add(flag);
     }
 
-    return flagsSet;
+    return hydratedFlags;
   }
 
 }
