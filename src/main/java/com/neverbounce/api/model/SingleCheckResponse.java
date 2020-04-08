@@ -207,9 +207,7 @@ public class SingleCheckResponse extends GenericResponse {
       }
 
       if (flagString.toUpperCase().equals("ACCEPTS_ALL")) {
-        flagsSet.add(Flag.ACCEPT_ALL);
-
-        continue;
+        flagString = Flag.ACCEPT_ALL.name();
       }
 
       Flag flag;
