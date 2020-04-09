@@ -1,6 +1,8 @@
 package com.neverbounce.api.model;
 
 import com.google.api.client.util.Key;
+
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -13,8 +15,10 @@ public class SingleCheckResponse extends GenericResponse {
   @Key
   private Result result;
 
-  @Key
-  private Set<Flag> flags;
+  private Set<Flag> flagsEnum;
+
+  @Key("flags")
+  private Set<String> flagsStrings;
 
   @Key("suggested_correction")
   private String suggestedCorrection;
@@ -37,11 +41,41 @@ public class SingleCheckResponse extends GenericResponse {
   }
 
   public Set<Flag> getFlags() {
-    return flags;
+    return flagsEnum;
   }
 
   public void setFlags(Set<Flag> flags) {
-    this.flags = flags;
+    this.flagsEnum = flags;
+  }
+
+  public Set<String> getFlagsStrings() {
+    return flagsStrings;
+  }
+
+  /**
+   *
+   * @param flags Set of flags strings
+   */
+  public void setFlagsStrings(Set<String> flags) {
+    flagsStrings = flags;
+
+    Set<Flag> flagsSet = new HashSet<Flag>();
+    for (String flagString : hydrateFlags(flags)) {
+      if (flagString == null) {
+        continue;
+      }
+
+      Flag flag;
+      try {
+        flag = Flag.valueOf(flagString.toUpperCase());
+      } catch (Exception e) {
+        continue;
+      }
+
+      flagsSet.add(flag);
+    }
+
+    this.flagsEnum = flagsSet;
   }
 
   public String getSuggestedCorrection() {
@@ -177,6 +211,20 @@ public class SingleCheckResponse extends GenericResponse {
       this.tld = tld;
     }
 
+  }
+
+  private Set<String> hydrateFlags(Set<String> flags) {
+    Set<String> hydratedFlags = new HashSet<String>();
+
+    for (String flag : flags) {
+      if (flag.toUpperCase().equals("ACCEPTS_ALL")) {
+        flag = Flag.ACCEPT_ALL.name();
+      }
+
+      hydratedFlags.add(flag);
+    }
+
+    return hydratedFlags;
   }
 
 }
