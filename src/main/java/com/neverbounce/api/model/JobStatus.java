@@ -32,6 +32,9 @@ public enum JobStatus {
   @Value("waiting")
   WAITING,
 
+  @Value("waiting_analyzed")
+  WAITING_ANALYZED,
+
   @Value("uploading")
   UPLOADING;
 
