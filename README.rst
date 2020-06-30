@@ -25,7 +25,7 @@ You can use NeverBounce's Java SDK with Maven by adding the following to your ``
     <dependency>
       <groupId>com.neverbounce</groupId>
       <artifactId>neverbounce-api-java</artifactId>
-      <version>4.0.9</version>
+      <version>4.0.13</version>
     </dependency>
   </dependencies>
 
@@ -33,14 +33,14 @@ You can use NeverBounce's Java SDK with Maven by adding the following to your ``
 
 You can use NeverBounce's Java SDK with Ivy by adding the following to your ivy.xml::
 
-  <dependency org="com.neverbounce" name="neverbounce-api-java" rev="4.0.9" />
+  <dependency org="com.neverbounce" name="neverbounce-api-java" rev="4.0.13" />
 
 **Gradle**
 
 You can use NeverBounce's Java SDK with Gradle by adding the following to your ``build.gradle`` in
 the ``dependencies`` block::
 
-  compile "com.neverbounce:neverbounce-api-java:4.0.9"
+  compile "com.neverbounce:neverbounce-api-java:4.0.13"
 
 Usage
 -----
