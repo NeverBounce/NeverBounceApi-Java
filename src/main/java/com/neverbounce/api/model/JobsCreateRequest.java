@@ -37,9 +37,12 @@ public abstract class JobsCreateRequest<T> extends AbstractRequest<JobsCreateRes
   @Key("request_meta_data[leverage_historical_data]")
   private final Integer historicalData;
 
+  @Key("allow_manual_review")
+  private final Integer allowManualReview;
+
   JobsCreateRequest(HttpClient httpClient,
       InputLocation inputLocation, T input, int autoParse, int autoStart, Integer runSample,
-      String filename, Integer historicalData) {
+      String filename, Integer historicalData, Integer allowManualReview) {
 
     super(httpClient);
     this.inputLocation = inputLocation;
@@ -49,6 +52,7 @@ public abstract class JobsCreateRequest<T> extends AbstractRequest<JobsCreateRes
     this.runSample = runSample;
     this.filename = filename;
     this.historicalData = historicalData;
+    this.allowManualReview = allowManualReview;
   }
 
   @Override
@@ -67,6 +71,7 @@ public abstract class JobsCreateRequest<T> extends AbstractRequest<JobsCreateRes
     protected Boolean runSample;
     protected String filename;
     protected Integer historicalData;
+    protected Boolean allowManualReview;
 
     public Builder(HttpClient httpClient, InputLocation inputLocation) {
       super(httpClient);
@@ -95,6 +100,11 @@ public abstract class JobsCreateRequest<T> extends AbstractRequest<JobsCreateRes
 
     public Builder<T, R> withHistoricalData(boolean historicalData) {
       this.historicalData = historicalData ? 1 : 0;
+      return this;
+    }
+
+    public Builder<T, R> withAllowManualReview(boolean allowManualReview) {
+      this.allowManualReview = allowManualReview;
       return this;
     }
 

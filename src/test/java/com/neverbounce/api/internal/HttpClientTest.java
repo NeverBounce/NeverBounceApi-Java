@@ -64,6 +64,7 @@ public class HttpClientTest {
                 .withAutoParse(true)
                 .withAutoStart(true)
                 .withFilename("test.csv")
+                .withAllowManualReview(true)
                 .build();
 
     JobsCreateResponse jobsCreateResponse =

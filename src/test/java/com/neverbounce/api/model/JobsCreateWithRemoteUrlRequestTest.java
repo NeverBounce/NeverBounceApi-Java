@@ -18,6 +18,7 @@ public class JobsCreateWithRemoteUrlRequestTest {
               .withAutoParse(true)
               .withAutoStart(true)
               .withFilename("test.csv")
+              .withAllowManualReview(true)
               .build();
 
     assertNotNull(jobsCreateWithRemoteUrlRequest);

@@ -24,7 +24,7 @@ public class JobsCreateWithSuppliedJsonRequest extends JobsCreateRequest<List<Em
   /** Creates Job Create request with Json. */
   public JobsCreateWithSuppliedJsonRequest(HttpClient httpClient,
       InputLocation inputLocation, List<EmailData> input, int autoParse, int autoStart,
-      Integer runSample, String filename, Integer historicalData) {
+      Integer runSample, String filename, Integer historicalData, Integer allowManualReview) {
 
     super(
             httpClient,
@@ -34,7 +34,8 @@ public class JobsCreateWithSuppliedJsonRequest extends JobsCreateRequest<List<Em
             autoStart,
             runSample,
             filename,
-            historicalData
+            historicalData,
+            allowManualReview
     );
   }
 
@@ -79,7 +80,8 @@ public class JobsCreateWithSuppliedJsonRequest extends JobsCreateRequest<List<Em
           toInteger(autoStart),
           toInteger(runSample),
           filename,
-          historicalData
+          historicalData,
+          toInteger(allowManualReview)
       );
     }
 

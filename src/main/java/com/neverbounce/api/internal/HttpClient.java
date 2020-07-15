@@ -15,7 +15,7 @@ public interface HttpClient {
 
   String API_BASE_URL = "https://api.neverbounce.com";
   String API_KEY = "key";
-  String DEFAULT_API_VERSION = "v4";
+  String DEFAULT_API_VERSION = "v4.2";
 
   String HTTP_METHOD_GET = "GET";
   String HTTP_METHOD_POST = "POST";

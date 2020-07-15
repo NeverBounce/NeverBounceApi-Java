@@ -164,6 +164,7 @@ public class NeverbounceClientTest {
         .withAutoParse(true)
         .withAutoStart(true)
         .withFilename("test.csv")
+        .withAllowManualReview(true)
         .build();
 
     JobsCreateResponse jobsCreateResponse = jobsCreateWithRemoteUrlRequest.execute();
@@ -230,6 +231,7 @@ public class NeverbounceClientTest {
     JobsStartRequest jobsStartRequest = neverbounceClient
         .prepareJobsStartRequest()
         .withJobId(1)
+        .withAllowManualReview(false)
         .build();
 
     JobsStartResponse jobsStartResponse = jobsStartRequest.execute();
