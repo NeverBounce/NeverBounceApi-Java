@@ -23,7 +23,12 @@ public class JobsStartRequest extends AbstractJobsRequest<JobsStartResponse> {
   @Key("allow_manual_review")
   private final Integer allowManualReview;
 
-  JobsStartRequest(HttpClient httpClient, long jobId, Integer runSample, Integer allowManualReview) {
+  JobsStartRequest(
+          HttpClient httpClient,
+          long jobId,
+          Integer runSample,
+          Integer allowManualReview
+  ) {
     super(httpClient, jobId);
     this.runSample = runSample;
     this.allowManualReview = allowManualReview;
@@ -56,7 +61,12 @@ public class JobsStartRequest extends AbstractJobsRequest<JobsStartResponse> {
 
     @Override
     protected JobsStartRequest doBuild() {
-      return new JobsStartRequest(httpClient, jobId, toInteger(runSample), toInteger(allowManualReview));
+      return new JobsStartRequest(
+              httpClient,
+              jobId,
+              toInteger(runSample),
+              toInteger(allowManualReview)
+      );
     }
 
   }

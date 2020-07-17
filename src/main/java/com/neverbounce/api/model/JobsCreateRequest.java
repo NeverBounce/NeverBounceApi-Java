@@ -48,9 +48,12 @@ public abstract class JobsCreateRequest<T> extends AbstractRequest<JobsCreateRes
   @Key("callback_headers")
   private final Map<String, String> callbackHeaders;
 
-  JobsCreateRequest(HttpClient httpClient,
+  JobsCreateRequest(
+      HttpClient httpClient,
       InputLocation inputLocation, T input, int autoParse, int autoStart, Integer runSample,
-      String filename, Integer historicalData, Integer allowManualReview, String callbackUrl, Map<String, String> callbackHeaders) {
+      String filename, Integer historicalData, Integer allowManualReview, String callbackUrl,
+      Map<String, String> callbackHeaders
+  ) {
 
     super(httpClient);
     this.inputLocation = inputLocation;
