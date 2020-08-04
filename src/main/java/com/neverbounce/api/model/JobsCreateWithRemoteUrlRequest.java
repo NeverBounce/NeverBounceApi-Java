@@ -5,6 +5,8 @@ import static com.neverbounce.api.model.InputLocation.REMOTE_URL;
 
 import com.neverbounce.api.internal.HttpClient;
 
+import java.util.Map;
+
 /**
  * Using a remote URL allows you to host the file and provide us with a direct link to it. The file
  * should be a list of emails separated by line breaks or a standard CSV file. We support most
@@ -19,7 +21,8 @@ public class JobsCreateWithRemoteUrlRequest extends JobsCreateRequest<String> {
 
   JobsCreateWithRemoteUrlRequest(HttpClient httpClient,
       InputLocation inputLocation, String input, int autoParse, int autoStart,
-      Integer runSample, String filename, Integer historicalData) {
+      Integer runSample, String filename, Integer historicalData, Integer allowManualReview,
+      String callbackUrl, Map<String, String> callbackHeaders) {
 
     super(
             httpClient,
@@ -29,7 +32,10 @@ public class JobsCreateWithRemoteUrlRequest extends JobsCreateRequest<String> {
             autoStart,
             runSample,
             filename,
-            historicalData
+            historicalData,
+            allowManualReview,
+            callbackUrl,
+            callbackHeaders
     );
   }
 
@@ -60,7 +66,10 @@ public class JobsCreateWithRemoteUrlRequest extends JobsCreateRequest<String> {
           toInteger(autoStart),
           toInteger(runSample),
           filename,
-          historicalData
+          historicalData,
+          toInteger(allowManualReview),
+          callbackUrl,
+          callbackHeaders
       );
     }
 

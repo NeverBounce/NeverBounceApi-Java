@@ -38,6 +38,9 @@ public class JobsStatusResponse extends GenericResponse {
   @Key("job_status")
   private JobStatus jobStatus;
 
+  @Key("failure_reason")
+  private String failureReason;
+
   public long getId() {
     return id;
   }
@@ -112,6 +115,14 @@ public class JobsStatusResponse extends GenericResponse {
 
   public void setJobStatus(JobStatus jobStatus) {
     this.jobStatus = jobStatus;
+  }
+
+  public String getFailureReason() {
+    return failureReason;
+  }
+
+  public void setFailureReason(String failureReason) {
+    this.failureReason = failureReason;
   }
 
   public static class Total {

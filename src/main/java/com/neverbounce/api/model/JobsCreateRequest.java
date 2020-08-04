@@ -4,6 +4,8 @@ import com.google.api.client.util.Key;
 import com.google.api.client.util.Preconditions;
 import com.neverbounce.api.internal.HttpClient;
 
+import java.util.Map;
+
 /**
  * The jobs create endpoint allows you create verify multiple emails together, the same way you
  * would verify lists in the dashboard.
@@ -37,9 +39,21 @@ public abstract class JobsCreateRequest<T> extends AbstractRequest<JobsCreateRes
   @Key("request_meta_data[leverage_historical_data]")
   private final Integer historicalData;
 
-  JobsCreateRequest(HttpClient httpClient,
+  @Key("allow_manual_review")
+  private final Integer allowManualReview;
+
+  @Key("callback_url")
+  private final String callbackUrl;
+
+  @Key("callback_headers")
+  private final Map<String, String> callbackHeaders;
+
+  JobsCreateRequest(
+      HttpClient httpClient,
       InputLocation inputLocation, T input, int autoParse, int autoStart, Integer runSample,
-      String filename, Integer historicalData) {
+      String filename, Integer historicalData, Integer allowManualReview, String callbackUrl,
+      Map<String, String> callbackHeaders
+  ) {
 
     super(httpClient);
     this.inputLocation = inputLocation;
@@ -49,6 +63,9 @@ public abstract class JobsCreateRequest<T> extends AbstractRequest<JobsCreateRes
     this.runSample = runSample;
     this.filename = filename;
     this.historicalData = historicalData;
+    this.allowManualReview = allowManualReview;
+    this.callbackUrl = callbackUrl;
+    this.callbackHeaders = callbackHeaders;
   }
 
   @Override
@@ -67,6 +84,9 @@ public abstract class JobsCreateRequest<T> extends AbstractRequest<JobsCreateRes
     protected Boolean runSample;
     protected String filename;
     protected Integer historicalData;
+    protected Boolean allowManualReview;
+    protected String callbackUrl;
+    protected Map<String, String> callbackHeaders;
 
     public Builder(HttpClient httpClient, InputLocation inputLocation) {
       super(httpClient);
@@ -95,6 +115,21 @@ public abstract class JobsCreateRequest<T> extends AbstractRequest<JobsCreateRes
 
     public Builder<T, R> withHistoricalData(boolean historicalData) {
       this.historicalData = historicalData ? 1 : 0;
+      return this;
+    }
+
+    public Builder<T, R> withAllowManualReview(boolean allowManualReview) {
+      this.allowManualReview = allowManualReview;
+      return this;
+    }
+
+    public Builder<T, R> withCallbackUrl(String callbackUrl) {
+      this.callbackUrl = callbackUrl;
+      return this;
+    }
+
+    public Builder<T, R> withCallbackHeaders(Map<String, String> callbackHeaders) {
+      this.callbackHeaders = callbackHeaders;
       return this;
     }
 

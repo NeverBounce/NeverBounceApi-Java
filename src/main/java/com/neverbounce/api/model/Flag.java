@@ -52,6 +52,11 @@ public enum Flag {
   GOVERNMENT_HOST("The input given is a government email"),
   
   /**
+   * Academic Host.
+   */
+  ACADEMIC_HOST("The input given is a acedemic email"),
+
+  /**
    * Acedemic Host.
    */
   ACEDEMIC_HOST("The input given is a acedemic email"),
