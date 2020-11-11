@@ -12,6 +12,7 @@ import com.google.api.client.testing.http.MockHttpTransport;
 import com.google.api.client.testing.http.MockLowLevelHttpRequest;
 import com.google.api.client.testing.http.MockLowLevelHttpResponse;
 import com.neverbounce.api.client.exception.NeverbounceApiException;
+import com.neverbounce.api.client.exception.NeverbounceIoException;
 import com.neverbounce.api.model.AccountInfoResponse;
 import com.neverbounce.api.model.JobsCreateResponse;
 import com.neverbounce.api.model.JobsCreateWithRemoteUrlRequest;
@@ -39,9 +40,21 @@ public class HttpClientTest {
   }
 
   @Test
-  public void testGetForObject_withBadRequest() throws Exception {
+  public void testGetForObject_withBadStatusCode() throws Exception {
     String content = IoUtils.getResourceAsString("error_response.json");
     HttpClient httpClient = createHttpClient(400, MEDIA_TYPE, content);
+
+    try {
+      httpClient.getForObject("account/info", AccountInfoResponse.class);
+      fail(NeverbounceIoException.class.getName() + " should have been thrown");
+    } catch (NeverbounceIoException nae) {
+    }
+  }
+
+  @Test
+  public void testGetForObject_withErrorMessage() throws Exception {
+    String content = IoUtils.getResourceAsString("error_response.json");
+    HttpClient httpClient = createHttpClient(200, MEDIA_TYPE, content);
 
     try {
       httpClient.getForObject("account/info", AccountInfoResponse.class);

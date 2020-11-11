@@ -7,6 +7,7 @@ import com.google.api.client.http.HttpHeaders;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestFactory;
 import com.google.api.client.http.HttpRequestInitializer;
+import com.google.api.client.http.HttpResponse;
 import com.google.api.client.http.HttpResponseException;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
@@ -117,14 +118,14 @@ public class HttpClientImpl implements HttpClient {
     try {
       prepareRequest(httpRequest);
 
-      R response = httpRequest.execute().parseAs(responseClass);
-      Status status = response.getStatus();
+      HttpResponse httpResponse = httpRequest.execute();
 
       LOGGER.debug(
           "Executed {} HTTP request, response status is {}.",
-          httpRequest.getRequestMethod(), status.name());
+          httpRequest.getRequestMethod(), httpResponse.getStatusCode());
 
-      if (!SUCCESS.equals(status)) {
+      R response = httpResponse.parseAs(responseClass);
+      if (!Status.SUCCESS.equals(response.getStatus())) {
         throw new NeverbounceApiException(response);
       }
 
@@ -132,7 +133,9 @@ public class HttpClientImpl implements HttpClient {
     } catch (HttpResponseException hre) {
       throw translateHttpResponseException(hre);
     } catch (IOException ioe) {
-      throw new NeverbounceIoException(ioe);
+      throw new NeverbounceIoException("NeverBounce API returned an expected response.", ioe);
+    } catch (IllegalArgumentException iae) {
+      throw new NeverbounceIoException("NeverBounce API returned an expected response.", iae);
     }
   }
 
@@ -173,11 +176,19 @@ public class HttpClientImpl implements HttpClient {
 
   private RuntimeException translateHttpResponseException(HttpResponseException hre) {
     NeverbounceApiException neverbounceApiException;
+    if (hre.getStatusCode() > 299 || hre.getStatusCode() < 200) {
+      return new NeverbounceIoException("NeverBounce API returned a status code of "
+              + hre.getStatusCode(), hre);
+    }
+
     try {
       JsonParser jsonParser = JSON_FACTORY.createJsonParser(hre.getContent());
       neverbounceApiException = jsonParser.parse(NeverbounceApiException.class);
     } catch (IOException ioe) {
       return new NeverbounceIoException(ioe);
+    } catch (IllegalArgumentException e) {
+      return new NeverbounceIoException("NeverBounce API returned a non JSON response: "
+              + hre.getContent(), hre);
     }
 
     return neverbounceApiException;
