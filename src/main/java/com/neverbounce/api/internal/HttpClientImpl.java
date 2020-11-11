@@ -177,7 +177,8 @@ public class HttpClientImpl implements HttpClient {
   private RuntimeException translateHttpResponseException(HttpResponseException hre) {
     NeverbounceApiException neverbounceApiException;
     if (hre.getStatusCode() > 299 || hre.getStatusCode() < 200) {
-      return new NeverbounceIoException("NeverBounce API returned a status code of " + hre.getStatusCode(), hre);
+      return new NeverbounceIoException("NeverBounce API returned a status code of "
+              + hre.getStatusCode(), hre);
     }
 
     try {
@@ -186,7 +187,8 @@ public class HttpClientImpl implements HttpClient {
     } catch (IOException ioe) {
       return new NeverbounceIoException(ioe);
     } catch (IllegalArgumentException e) {
-      return new NeverbounceIoException("NeverBounce API returned a non JSON response: " + hre.getContent(), hre);
+      return new NeverbounceIoException("NeverBounce API returned a non JSON response: "
+              + hre.getContent(), hre);
     }
 
     return neverbounceApiException;
